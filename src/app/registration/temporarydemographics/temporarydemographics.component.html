@@ -1,0 +1,230 @@
+<div class="card">
+  <br />
+  <br />
+
+  <p-panel>
+    <ng-template pTemplate="header">
+      <span class="text-primary font-semibold text-xl">Temporary Demographics</span></ng-template>
+    <p-divider align="left">
+
+    </p-divider>
+    <div class="container">
+      <div class="row">
+        <div class="col-2">
+          <input pInputText  pKeyFilter="int"  [(ngModel)]="TemporaryDemographic.tempId" placeholder="TemporaryPatientId"  disabled>
+        </div>
+
+
+        <div class="col-2">
+          <p-dropdown [options]="title" [(ngModel)]="selectedTitle" optionLabel="name" placeholder="Title" [required]="true"></p-dropdown>
+        </div>
+
+
+        <div class="col-2">
+
+          <input pInputText [(ngModel)]="TemporaryDemographic.personFirstName" placeholder="First Name" [required]="true">
+
+
+        </div>
+
+        <div class="col-2">
+          <input pInputText [(ngModel)]="TemporaryDemographic.personMiddleName" placeholder="Middle Name" [required]="true">
+        </div>
+
+
+        <div class="col-2">
+          <input pInputText [(ngModel)]="TemporaryDemographic.personLastName" placeholder="Last Name" [required]="true">
+        </div>
+      </div>
+
+
+   
+      <div class="row">
+
+     
+
+
+        <div class="col-2">
+          <p-dropdown [options]="genderOptions" [(ngModel)]="selectedgenderOptions" optionLabel="name" placeholder="Gender" [required]="true"></p-dropdown>
+        </div>
+
+
+        <div class="col-2">
+
+          <p-calendar  [(ngModel)]="bdate" [showTime]="true" [showSeconds]="true" placeholder="Date of Birth" class="form-control" [required]="true"></p-calendar>
+        </div>
+
+        <div class="col-2">
+
+          <input pInputText  pKeyFilter="int"  [(ngModel)]="TemporaryDemographic.personAge" placeholder="Age" [required]="true">
+
+        </div>
+
+
+        <div class="col-2">
+          <input pInputText  pKeyFilter="int"  [(ngModel)]="TemporaryDemographic.personHomePhone1" placeholder="Home Phone"  [required]="true"/>
+      </div>
+
+      <div class="col-2">
+
+        <input pInputText  pKeyFilter="int"  [(ngModel)]="TemporaryDemographic.personWorkPhone1" pInputText placeholder="Work Phone">
+      </div>
+
+      </div>
+        <div class="row">
+       
+
+
+         
+
+
+          <div class="col-2">
+
+            <input  pInputText  pKeyFilter="int"   placeholder="Street Number">
+          </div>
+
+          <div class="col-2">
+
+            <input  pInputText  pKeyFilter="int"  placeholder="Dwelling Number">
+          </div>
+
+
+
+
+          <div class="col-2">
+
+            <input pInputText   pKeyFilter="int"  [(ngModel)]="TemporaryDemographic.personZipCode" placeholder="Zip/Postal Code" [required]="true">
+          </div>
+
+
+          <div class="col-2">
+            <p-dropdown [options]="country" [(ngModel)]="selectedCountry" placeholder="Select Country"  optionLabel="name" [required]="true"></p-dropdown>
+          </div>
+
+          <div class="col-2">
+
+            <p-dropdown [options]="State" [(ngModel)]="selectedState" placeholder="Select State"  optionLabel="name" [required]="true"></p-dropdown>
+
+          </div>
+
+        </div>
+
+        <div class="row">
+       
+
+
+         
+
+          <div class="col-2">
+
+            <p-dropdown [options]="city" [(ngModel)]="selectedCity" placeholder="Select City"  optionLabel="name" [required]="true" ></p-dropdown>
+          </div>
+
+
+
+          <div class="col-2">
+
+            <p-dropdown [options]="Nationality" [(ngModel)]="selectedNationality" placeholder="Select Nationality"  optionLabel="name" [required]="true"></p-dropdown>
+          </div>
+
+
+          <div class="col-2">
+
+            <input  pInputText [(ngModel)]="TemporaryDemographic.personCellPhone"  placeholder="Cell Phone" [required]="true">
+
+          </div>
+
+
+          <div class="col-2">
+
+            <input pInputText [(ngModel)]="TemporaryDemographic.personEmail" placeholder="Email" [required]="true">
+
+          </div>
+
+
+        </div>
+
+
+
+
+
+
+        <div class="row">
+       
+
+
+         
+
+          <div class="col-2">
+
+            <input pInputText [(ngModel)]="TemporaryDemographic.nokFirstName" placeholder="Kin MiddleName" [required]="true">
+          </div>
+
+
+
+          <div class="col-2">
+
+            <input pInputText [(ngModel)]="TemporaryDemographic.nokSocialSecurityNo" placeholder="Kin Social Security" [required]="true">
+          </div>
+
+
+          <div class="col-2">
+
+            <input  pInputText [(ngModel)]="TemporaryDemographic.nokZipCode"  placeholder="Kin Zip Code" [required]="true">
+
+          </div>
+
+
+          <div class="col-2">
+
+            <input pInputText [(ngModel)]="TemporaryDemographic.nokHomePhone" placeholder="Kin Home Phone" [required]="true">
+
+          </div>
+
+
+          <div class="col-2">
+
+            <input pInputText [(ngModel)]="TemporaryDemographic.nokAddress1" placeholder="Kin Address" [required]="true">
+
+          </div>
+
+
+        </div>
+       
+
+
+        <div class="row">
+
+          <div class="col-2">
+            <p-dropdown [options]="country" [(ngModel)]="selectedCountryNOK" placeholder="Select Country"  optionLabel="name" [required]="true"></p-dropdown>
+          </div>
+
+          <div class="col-2">
+
+            <p-dropdown [options]="State" [(ngModel)]="selectedStateNOK" placeholder="Select State"  optionLabel="name" [required]="true"></p-dropdown>
+
+          </div>
+
+          <div class="col-2">
+
+            <p-dropdown [options]="city" [(ngModel)]="selectedCityNOK" placeholder="Select City"  optionLabel="name" [required]="true"></p-dropdown>
+          </div>
+
+          <div class="col-2">
+            <input pInputText [(ngModel)]="TemporaryDemographic.comments" placeholder="Comment">
+
+
+          </div>
+        </div>
+
+
+
+      </div>
+
+      
+      <ng-template pTemplate="footer">
+        <button pButton pRipple label="Submit" class="p-button-success" (click)="submit()"></button>
+      </ng-template>
+   
+  </p-panel>
+

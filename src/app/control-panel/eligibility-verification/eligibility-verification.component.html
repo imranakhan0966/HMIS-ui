@@ -1,0 +1,311 @@
+<div class="card">
+
+
+    <br />
+    <br />
+
+
+
+    <p-panel>
+        <ng-template pTemplate="header"> <span class="text-primary font-semibold text-xl">Eligibility History</span>
+            <span style="margin-left: 86%;"> <p-button style="float:right" icon="pi pi-filter"
+                    styleClass="p-button-rounded p-button-secondary" (click)="ClickFilter()"></p-button>
+            </span></ng-template>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <div class="flex card-container">
+                <div>
+                   
+        
+        
+        
+                    <p-table [style]="{'width':'100%','overflow':'auto!important'}" #table [value]="schedule" dataKey="id"
+                        [rows]="100" [showCurrentPageReport]="true" [rowsPerPageOptions]="[10, 25, 50]" [paginator]="true"
+                        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+                        [globalFilterFields]="['mRNo']">
+        
+                        <ng-template pTemplate="header">
+                            <tr>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+                                <th>
+                                    <div class="flex align-items-center">
+                                        MRNO
+                                        <p-columnFilter type="text" field="mRNo" display="menu"></p-columnFilter>
+                                    </div>
+                                </th>
+        
+        
+        
+                                <th>
+                                    <div class="flex align-items-center">
+                                        Patient Name
+                                        <p-columnFilter type="text" field="patientName" display="menu"></p-columnFilter>
+                                    </div>
+                                </th>
+        
+        
+                                
+                                
+        
+        
+        
+        
+        
+        
+                               
+                                <th>
+                                    <div class="flex align-items-center">
+                                        Status
+                                        <p-columnFilter type="text" field="Status" display="menu"></p-columnFilter>
+                                    </div>
+                                </th>
+                               
+                               
+                                
+                               
+                               
+        
+                                <th>
+                                    <div class="flex align-items-center">
+                                        Response Date
+                                        <p-columnFilter type="text" field="responseDate" display="menu"></p-columnFilter>
+                                    </div>
+                                </th>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-schedule>
+                            <tr>
+        
+        
+                                <td>
+                                    <span class="ml-1 vertical-align-middle">{{ schedule.mrNo }}</span>
+                                </td>
+        
+        
+        
+                                <td>
+                                    <span class="ml-1 vertical-align-middle">{{ schedule.patientName }}</span>
+                                </td>
+        
+                               
+        
+        
+                               
+        
+                                
+        
+                                <td>
+                                    <span class="ml-1 vertical-align-middle">{{ schedule.elStatus }}</span>
+                                </td>
+                                
+                                
+        
+                               
+                               
+                               
+        
+                                <td>
+                                    <span class="ml-1 vertical-align-middle">{{ schedule.messageResponseDate | date: 'dd-MM-yyyy hh:mm a'}}</span>
+                                </td>
+        
+                                
+                                
+                                
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+                                
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="emptymessage">
+                            <tr>
+                                <td colspan="7">No record found.</td>
+                            </tr>
+                        </ng-template>
+        
+        
+        
+        
+                    </p-table>
+        
+        
+        
+                    <p-toast></p-toast>
+        
+        
+                </div>
+            </div>
+
+
+
+
+
+    </p-panel>
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p-dialog header="Filter" [(visible)]="filter" [breakpoints]="{ '960px': '75vw' }" [style]="{ width: '80vw' }"
+    [draggable]="false" [maximizable]="true">
+
+
+    <br /><br />
+
+ 
+
+    <div class="container-fluid">
+
+
+        <div class="row">
+
+    <div class="col-sm-4">
+        <!-- <input pInputText class="p-inputtext-sm" id="selectedMRNo"  placeholder="MrNo" [(ngModel)]="selectedMRNo" /> -->
+        <input pInputText class="txt" type="text" placeholder="MrNo" [(ngModel)]="selectedMRNo" />
+
+    </div>
+    <!-- <div class="col-sm-3">
+        <input pInputText class="p-inputtext-sm" id="mrno"  placeholder="Visit Account No" [(ngModel)]="selectedVisitAccountNo" />
+
+
+    </div> -->
+    
+    <div class="col-sm-4">
+        <!-- <input pInputText class="p-inputtext-sm" id="selectedEligibilityId"  placeholder="Eligibility No" [(ngModel)]="selectedEligibilityId" /> -->
+        <input pInputText class="txt" type="text" placeholder="Eligilibility No" [(ngModel)]="selectedEligibilityId" />
+
+    </div>
+
+    <div class="col-sm-4">
+        <p-dropdown [options]="elStatus" [(ngModel)]="selectedELStatusId" placeholder="Select Status"
+            optionLabel="name" inputId="float-label"></p-dropdown>
+
+    </div>
+   
+   
+
+   </div>
+
+
+   <div class="row mt-5">
+    <div class="col-sm-4">
+        <!-- <p-calendar [(ngModel)]="selectedMessageRequestDate" placeholder="Request Date" [timeOnly]="true"
+            hourFormat="12" [inline]="false"></p-calendar> -->
+            <!-- <p-calendar [(ngModel)]="selectedMessageRequestDate" [readonlyInput]="true" placeholder="Select Request Date"></p-calendar> -->
+            <p-calendar appendTo="body" [(ngModel)]="selectedMessageRequestDate" 
+                            placeholder="Select Request Date"></p-calendar>
+    </div>
+    <div class="col-sm-4">
+        <!-- <p-calendar [(ngModel)]="selectedMessageResponseDate" placeholder="Response Date" [timeOnly]="true"
+            hourFormat="12" [inline]="false"></p-calendar> -->
+            <p-calendar appendTo="body" [(ngModel)]="selectedMessageResponseDate" 
+            placeholder="Select Response Date"></p-calendar>
+    </div>
+
+   </div>
+
+
+    </div>
+
+    <br />
+
+    <br />
+   
+    <p-button style="float:right" label="Submit" (click)="submitFilter()"></p-button>
+
+
+</p-dialog>

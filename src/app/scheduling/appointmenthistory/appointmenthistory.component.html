@@ -1,0 +1,203 @@
+
+
+<div class="card">
+
+  
+    <br/>
+    <br/>
+
+
+
+    <p-panel>
+        <ng-template pTemplate="header"> <span class="text-primary font-semibold text-xl">Appointment History</span>  <span style="    margin-left: 86%;">    <p-button style="float:right" icon="pi pi-filter" styleClass="p-button-rounded p-button-secondary"  ></p-button>
+        </span></ng-template>
+  
+
+
+
+    
+        <div class="flex card-container">
+            <div  >
+    
+        
+                
+                <p-table
+              
+                    #table
+                    [value]="history"
+                    dataKey="id"
+                    [rows]="10"
+                    [showCurrentPageReport]="true"
+                    [rowsPerPageOptions]="[10, 25, 50]"
+                  
+                    [paginator]="true"
+                    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+                    [globalFilterFields]="['appId', 'patientStatus', 'provider','appDateTime','appStatus','purposeOfVisit','viewPatientName']"
+                >
+                    
+                    <ng-template pTemplate="header">
+                        <tr>
+                
+                
+                         
+                
+                          
+                            <th  style="width:5%">
+                                <div class="flex align-items-center">
+                               App Id
+                                    <p-columnFilter type="text" field="appId" display="menu"></p-columnFilter>
+                                </div>
+                            </th>
+
+
+
+                            <th  style="width:5%">
+                                <div class="flex align-items-center">
+                                    Patient Status
+                                    <p-columnFilter type="text" field="patientStatus" display="menu"></p-columnFilter>
+                                </div>
+                            </th>
+
+
+
+                            <th  style="width:5%">
+                                <div class="flex align-items-center">
+                                    Provider
+                                    <p-columnFilter type="text" field="provider" display="menu"></p-columnFilter>
+                                </div>
+                            </th>
+
+
+
+
+                            
+                            <th pSortableColumn="appDateTime" style="width:12%">
+                                <div class="flex align-items-center">
+                                    Appointment Date <p-sortIcon field="appDateTime"></p-sortIcon>
+                                    <p-columnFilter type="date" field="appDateTime" display="menu" ></p-columnFilter>
+                                </div>
+                            </th>
+                
+                            <th  style="width:12%">
+                                <div class="flex align-items-center">
+                                    App Status
+                                    <p-columnFilter type="text" field="appStatus" display="menu"></p-columnFilter>
+                                </div>
+                            </th>
+                        
+                            <!-- style="min-width:10rem" -->
+                            <th style="width:5%">
+                                <div class="flex align-items-center">
+                                    Purpose Of Visit
+                                    <p-columnFilter type="text" field="purposeOfVisit" display="menu"></p-columnFilter>
+                                </div>
+                            </th>
+                            <th style="width:5%">
+                                <div class="flex align-items-center">
+                                     Patient Name
+                                    <p-columnFilter type="text" field="viewPatientName" display="menu" ></p-columnFilter>
+                                </div>
+                            </th>
+                
+                            <th style="width: 2rem"></th>
+                
+                            
+                
+                          
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-history>
+                        <tr>
+                         
+                            <td>
+                                <span class="ml-1 vertical-align-middle">{{ history.appId }}</span>
+                            </td>
+
+                            <td>
+                                <span class="ml-1 vertical-align-middle">{{ history.patientStatus }}</span>
+                            </td>
+                
+                            
+                            <td>
+                                <span class="ml-1 vertical-align-middle">{{ history.provider }}</span>
+                            </td>
+
+
+
+                            <td>
+                                <span class="ml-1 vertical-align-middle">{{ history.appDateTime  | date: 'MM/dd/yyyy' }}</span>
+                            </td>
+                
+                
+                
+                       
+                
+                
+                            <td>
+                                <span class="ml-1 vertical-align-middle">{{ history.appStatus }}</span>
+                            </td>
+
+
+                            <td>
+                                <span class="ml-1 vertical-align-middle">{{ history.purposeOfVisit }}</span>
+                            </td>
+
+
+                            <td>
+                                <span class="ml-1 vertical-align-middle">{{ history.viewPatientName }}</span>
+                            </td>
+                
+                
+            
+                
+                
+                            <td>
+                                <p-button  icon="pi pi-file"  pTooltip="Appointment Detail"   styleClass="p-button-info"></p-button>
+
+                            </td>
+                            
+                
+                       
+                      
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="emptymessage">
+                        <tr>
+                            <td colspan="7">No appointment history.</td>
+                        </tr>
+                    </ng-template>
+                
+                
+                    
+                
+                </p-table>
+                
+                <p-toast></p-toast>
+    
+    
+            </div>
+        </div>
+
+        
+        <ng-template pTemplate="footer"> 
+            
+            
+        </ng-template>
+       
+
+    
+    </p-panel>
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+

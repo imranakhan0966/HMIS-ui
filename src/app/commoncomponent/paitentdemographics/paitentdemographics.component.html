@@ -1,0 +1,92 @@
+<!-- <span class="p-float-label mt-2">
+          
+            <input pInputText class="p-inputtext-sm" id="mrno"  [(ngModel)]="searchMr" />
+            <label htmlFor="mrno"> MrNo</label> &nbsp;
+ 
+            <p-button icon="pi pi-search"  (click)="search()" styleClass="p-button-sm"></p-button>
+        
+
+         
+         
+              
+          </span>
+          <br>
+          <img [src]="'data:image/png;base64,'+ SubDetail?.patientPicture" alt="Base64 Image" style="height:140px">
+               -->
+
+
+               <div class="container">
+          
+                <div class="row">
+    
+                  <div class="col-3 p-float-label">
+                  <span>
+                    
+                    <input pInputText class="p-inputtext-sm" id="mrno"  placeholder="MrNo" [(ngModel)]="searchMr" />
+                    <!-- <label htmlFor="mrno" style="float: left;"> MrNo</label>  -->&nbsp;
+                    <!-- <p-button label="Search"  (click)="search()"></p-button> -->
+                    <p-button icon="pi pi-search"  (click)="search()" styleClass="p-button-sm"></p-button>
+                  </span>
+        
+                 
+                 
+                      
+                  <br>
+                  <br>
+                      
+                  </div>
+                  <div class="col-4">
+                    <label for="username"><b>Name:</b> {{SubDetail?.personFirstName}}{{SubDetail?.personLastName}} </label><br>
+                    <label for="username" class="mt-1"><b>Payer:</b> {{Detail?.payerName}}</label><br>
+                    <label for="username" class="mt-1"> <b>Plan:</b> {{Detail?.plan}}</label><br>
+                    <label for="username" class="mt-1"><b>Member Id:</b> {{Detail?.memberId}}</label><br>
+                    <label for="username" class="mt-1"><b>Gender:</b> {{SubDetail?.personSex}}</label>
+    
+                  </div>
+                  <div class="col-2">
+                    
+                    <label for="username"><b>DOB:</b></label> {{SubDetail?.patientBirthDate | date: 'MM/dd/yyyy'}}<br>
+                    <label for="username" class="mt-1"><b>Age:</b> {{SubDetail?.age}}</label><br>
+                    <label for="username" class="mt-1"><b>Cell Phone:</b> {{SubDetail?.personCellPhone}}</label><br>
+                    <!-- <label for="username" class="mt-1"><b>Home Phone:</b>{{SubDetail?.personHomePhone1}}</label><br>
+                    <label for="username" class="mt-1"><b>Work Phone:</b>{{SubDetail?.personWorkPhone1}}</label>
+     -->
+                  </div>
+                  
+
+                  <div class="col-2">
+                    <img [src]="'data:image/png;base64,'+ SubDetail?.patientPicture" *ngIf="SubDetail?.patientPicture" style="height:145px;">
+
+
+                  </div>
+    
+                </div>
+             
+              </div>
+            <!-- <div class="container">
+              
+                <div class="row">
+                  <div class="col-4">
+                    <label for="username"><b>Name:</b> {{SubDetail?.personFirstName}}{{SubDetail?.personLastName}} </label><br>
+                    <label for="username"><b>Payer:</b> {{Detail?.payerName}}</label><br>
+                    <label for="username"><b>Plan:</b> {{Detail?.plan}}</label><br>
+                    <label for="username"><b>Member Id:</b> {{Detail?.memberId}}</label>
+    
+    
+                  </div>
+                  <div class="col-4">
+                    <label for="username"><b>Gender:</b> {{SubDetail?.personSex}}</label><br>
+                    <label for="username"><b>DOB:</b></label> {{SubDetail?.patientBirthDate | date: 'MM/dd/yyyy'}}<br>
+                    <label for="username"><b>Age:</b> {{SubDetail?.age}}</label>
+    
+                  </div>
+                  <div class="col-4">
+                    <label for="username"><b>Cell Phone:</b> {{SubDetail?.personCellPhone}}</label><br>
+                    <label for="username"><b>Home Phone:</b>{{SubDetail?.personHomePhone1}}</label><br>
+                    <label for="username"><b>Work Phone:</b>{{SubDetail?.personWorkPhone1}}</label>
+    
+                  </div>
+    
+                </div>
+             
+              </div> -->

@@ -1,0 +1,136 @@
+<p-button label="Family"  badge="{{Family?.length}}" badgeClass="p-badge-danger" styleClass="p-button-rounded p-button-warning p-button-outlined"  icon="pi pi-users"  (click)="openFamily()"></p-button>
+
+
+
+
+<p-dialog header="Family" [(visible)]="familyFilter" [breakpoints]="{ '960px': '75vw' }" [style]="{ width: '80vw' }" [draggable]="false"   [maximizable]="true">
+
+
+
+    <div class="flex card-container">
+        <div  >
+
+        <!-- [loading]="loading" -->
+            
+            <p-table
+        
+                #table
+                [value]="Family"
+                dataKey="id"
+                [rows]="10"
+                [showCurrentPageReport]="true"
+                [rowsPerPageOptions]="[10, 25, 50]"
+              
+                [paginator]="true"
+                currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+                [globalFilterFields]="['mrno', 'personfirstname', 'personsex', 'relationship','personAddress1','passportNo']"
+            >
+              
+                <ng-template pTemplate="header">
+                    <tr>
+            
+            
+                     
+            
+                        <th pSortableColumn="mrNo" >
+                            <div class="flex align-items-center">
+                                MrNo <p-sortIcon field="mrNo"></p-sortIcon>
+                                <p-columnFilter type="text" field="mrNo" display="menu"></p-columnFilter>
+                            </div>
+                        </th>
+                        <th  >
+                            <div class="flex align-items-center">
+                                FirstName
+                                <p-columnFilter type="text" field="personfirstname" display="menu"></p-columnFilter>
+                            </div>
+                        </th>
+            
+                        <th  >
+                            <div class="flex align-items-center">
+                                Sex
+                                <p-columnFilter type="text" field="personsex" display="menu"></p-columnFilter>
+                            </div>
+                        </th>
+                    
+                        <!-- style="min-width:10rem" -->
+                        <th >
+                            <div class="flex align-items-center">
+                                RelationShip
+                                <p-columnFilter type="text" field="relationship" display="menu"></p-columnFilter>
+                            </div>
+                        </th>
+                        <th >
+                            <div class="flex align-items-center">
+                                Address 1
+                                <p-columnFilter type="text" field="personAddress1" display="menu" ></p-columnFilter>
+                            </div>
+                        </th>
+            
+                        <th  >
+                            <div class="flex align-items-center">
+                                Passport
+                                <p-columnFilter type="text" field="passportNo" display="menu" ></p-columnFilter>
+                            </div>
+                        </th>
+            
+            
+                      
+            
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-Family>
+                    <tr>
+                        <td>
+                            {{ Family.mrNo }}
+                        </td>
+                        <td>
+                            <span class="ml-1 vertical-align-middle">{{ Family.personfirstname }}</span>
+                        </td>
+                
+            
+            
+            
+                        <td>
+                            <span class="ml-1 vertical-align-middle">{{ Family.personsex }}</span>
+                        </td>
+            
+                        
+                        <td>
+                            <span class="ml-1 vertical-align-middle">{{ Family.relationship }}</span>
+                        </td>
+            
+            
+                        <td>
+                            <span class="ml-1 vertical-align-middle">{{ Family.personAddress1 }}</span>
+                        </td>
+            
+            
+            
+            
+                        <td>
+                            <span class="ml-1 vertical-align-middle">{{ Family.passportNo }}</span>
+                        </td>
+                  
+                   
+            
+                  
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="emptymessage">
+                    <tr>
+                        <td colspan="7">No record found.</td>
+                    </tr>
+                </ng-template>
+            
+            
+                
+            
+            </p-table>
+            
+            <p-toast></p-toast>
+
+
+        </div>
+    </div>
+
+</p-dialog>

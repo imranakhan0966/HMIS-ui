@@ -1,0 +1,13 @@
+header {
+    text-align: center;
+    color: #fff;
+    background: #18bc9c;
+
+    position: fixed;
+    width:100%;
+    z-index: 1;
+    height: 88%;
+    overflow: hidden;
+    top: 0;
+    left: 0;
+}

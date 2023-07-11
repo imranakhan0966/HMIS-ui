@@ -1,0 +1,377 @@
+<p-confirmDialog [style]="{ width: '50vw' }" key="positionDialog" [position]="position" rejectButtonStyleClass="p-button-outlined"></p-confirmDialog>
+
+
+<div class="card">
+    <br />
+    <br />
+
+    <p-panel>
+
+        <ng-template pTemplate="header"> <span class="text-primary font-semibold text-xl">HR
+                Schedule</span></ng-template>
+
+        <div class="container">
+
+            <div class="row ">
+                <div class="col-sm-3">
+                    <p-dropdown [options]="hrEmployees" [(ngModel)]="selectedEmployee" placeholder="Select Employee"
+                        optionLabel="name" inputId="float-label"></p-dropdown>
+
+
+                </div>
+                <div class="col-sm-3">
+                    <p-dropdown [options]="facilities" [(ngModel)]="selectedFacility" placeholder="Select Facility"
+                        optionLabel="name" inputId="float-label"></p-dropdown>
+
+                </div>
+
+                <div class="col-sm-3">
+                    <p-dropdown [options]="sites" [(ngModel)]="selectedSites" placeholder="Select Sites"
+                        optionLabel="name" inputId="float-label"></p-dropdown>
+
+                </div>
+                <div class="col-sm-3">
+                    <p-dropdown [options]="clinicalUsage" [(ngModel)]="selectedclinicalUsage" placeholder="Select Usage"
+                        optionLabel="name" inputId="float-label"></p-dropdown>
+
+                </div>
+
+            </div>
+
+
+
+
+            <div class="row mt-2">
+                <div class="col-sm-3">
+
+
+                    <p-calendar [(ngModel)]="dailystartTime" placeholder="Daily Start Time" [timeOnly]="true"
+                        hourFormat="12" [inline]="false"></p-calendar>
+
+
+                </div>
+                <div class="col-sm-3">
+                    <p-calendar [(ngModel)]="dailyEndTime" placeholder="Daily End Time" [timeOnly]="true"
+                        hourFormat="12" [inline]="false"></p-calendar>
+                </div>
+                <div class="col-sm-3">
+                    <p-dropdown [options]="active" [(ngModel)]="selectedActive" placeholder="Active" optionLabel="name"
+                        inputId="float-label"></p-dropdown>
+
+                </div>
+                <div class="col-sm-3">
+                </div>
+
+            </div>
+
+            <div class="card mt-2">
+                <b>
+                    <a class="nav-item nav-link active mt-2" id="nav-profile-tab" data-toggle="tab" data-toggle="tab"
+                        role="tab" style="color:rgb(8, 8, 167); margin-left: 20px;" aria-controls="nav-profile"
+                        aria-selected="false">Include Day Break:
+                    </a></b>
+                <div class="row mt-2  mb-2 ml-2 mr-2">
+                    <div class="col-sm-3">
+                        <p-dropdown [options]="includeDayBreak" [(ngModel)]="selectedincludeDayBreak"
+                            placeholder="Include Day Break" optionLabel="name" inputId="float-label"
+                            (onChange)="enableBreakTime($event)"></p-dropdown>
+
+                    </div>
+                    <div class="col-sm-3">
+                        <p-calendar [(ngModel)]="daybreakStartTime" [disabled]="dayBreakDisable"
+                            placeholder="Day Break Start Time" [timeOnly]="true" hourFormat="12"
+                            [inline]="false"></p-calendar>
+                    </div>
+                    <div class="col-sm-3">
+                        <p-calendar [(ngModel)]="daybreakEndTime" [disabled]="dayBreakDisable"
+                            placeholder="Day Break End Time" [timeOnly]="true" hourFormat="12"
+                            [inline]="false"></p-calendar>
+                    </div>
+
+                    <div class="col-sm-3">
+                        <input pInputText class="txt" type="text" placeholder="Reason" [(ngModel)]="breakReason" [disabled]="dayBreakDisable" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="card mt-2">
+                <b>
+                    <!-- <p-checkbox [(ngModel)]="all" [binary]="true" inputId="Validity"
+                (onChange)="change()"></p-checkbox> -->
+                    <a class="nav-item nav-link active mt-2" data-toggle="tab" data-toggle="tab" role="tab"
+                        style="color: rgb(8, 8, 167); margin-left: 20px;" aria-controls="nav-profile"
+                        aria-selected="false">Include Validity:
+                    </a></b>
+                <div class="row mt-2  mb-2 ml-2 mr-2">
+                    <div class="col-sm-3">
+                        <p-dropdown [options]="validity" [(ngModel)]="selectedValidity" placeholder="Include Validity"
+                            optionLabel="name" inputId="float-label" (onChange)="enableValidity($event)"></p-dropdown>
+
+                    </div>
+                    <div class="col-sm-3">
+                        <p-calendar [(ngModel)]="validDateFrom" [disabled]="validityDateDisable"
+                            placeholder="From Date"></p-calendar>
+
+                    </div>
+                    <div class="col-sm-3">
+                        <p-calendar [(ngModel)]="validDateTo" [disabled]="validityDateDisable"
+                            placeholder="To Date"></p-calendar>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="card mt-2">
+                <b>
+                    <a class="nav-item nav-link active mt-2" id="nav-profile-tab" data-toggle="tab" data-toggle="tab"
+                        role="tab" style="color: rgb(8, 8, 167) ;margin-left: 20px;" aria-controls="nav-profile"
+                        aria-selected="false">Appointment Hour / Type:
+                    </a></b>
+                <div class="row mt-2  mb-2 ml-2 mr-2">
+
+
+                    <div class="col-sm-3">
+                        <p-dropdown [options]="appointmentHour_Type" [(ngModel)]="selectedAppointmentHour_Type"
+                            placeholder="Select Appointment Hour / Type " optionLabel="name" inputId="float-label"
+                            (onChange)="appointment($event)"></p-dropdown>
+
+                    </div>
+                    <div class="col-sm-3">
+                        <p-dropdown [options]="appointmenthour" [(ngModel)]="selectedAppointmenthour"
+                            placeholder="Appointment / Hour" optionLabel="name" inputId="float-label"
+                            [disabled]="appointmentHourDisable"></p-dropdown>
+
+                    </div>
+
+                    <div class="col-sm-3">
+                        <input pInputText class="txt" type="text" [(ngModel)]="maxOverloadApps" placeholder="Max Ovellapped Appointments" />
+                    </div>
+
+                </div>
+
+                <div class="row mt-2  mb-2 ml-2 mr-2" *ngIf="appointmentHourDisable">
+                    <div class="col-sm-3">
+                        <label for="">Appointment Type </label>
+                        <p-dropdown [options]="appointmentType" [(ngModel)]="selectedAppointmentType" placeholder="Select Appointment Type"
+                            optionLabel="name" inputId="float-label"></p-dropdown>
+    
+    
+                    </div>
+                    <div class="col-sm-3">
+                        <label for="">Duration </label>
+                        <p-dropdown [options]="duration" [(ngModel)]="selectedDuration" placeholder="Select Duration"
+                            optionLabel="name" inputId="float-label"></p-dropdown>
+    
+                    </div>
+    
+                    <div class="col-sm-3">
+                        <label for="">CPT Group</label>
+                        <p-dropdown [options]="cptGroup" [(ngModel)]="selectedCptGroup" placeholder="Select CPT Group"
+                            optionLabel="name" inputId="float-label"></p-dropdown>
+    
+                    </div>
+                    <div class="col-sm-3 mt-4" >
+                        <p-button label="Add" styleClass="p-button-rounded p-button-info" (click)="addAppointtype()"></p-button>
+                        </div>
+                    <div class="flex card-container mt-2">
+            
+            
+                        <div>
+                
+                        <!-- [loading]="loading" -->
+                            
+                            <p-table
+                          
+                                #table
+                                [value]="appointmentbytype"
+                                dataKey="id"
+                                [rows]="10"
+                                [showCurrentPageReport]="true"
+                                [rowsPerPageOptions]="[10, 25, 50]"
+                              
+                                [paginator]="true"
+                                currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+                                
+                            >
+                                
+                                <ng-template pTemplate="header">
+                                    <tr>
+                            
+                            
+            
+                                        
+                                     
+                            
+                                        <th>
+                                            <div class="flex align-items-center">
+                                                Appointment Type
+                                                <p-columnFilter type="text" field="appTypeName" display="menu"></p-columnFilter>
+                                            </div>
+                                        </th>
+            
+            
+            
+            
+                                      
+                                        <th >
+                                            <div class="flex align-items-center">
+                                                Duration
+                                                <p-columnFilter type="text" field="durationName" display="menu"></p-columnFilter>
+                                            </div>
+                                        </th>
+            
+            
+                                        
+                                        <th >
+                                            <div class="flex align-items-center">
+                                                CPT Group
+                                                <p-columnFilter type="text" field="cptGroupName" display="menu"></p-columnFilter>
+                                            </div>
+                                        </th>
+                            
+                                        <th  pSortableColumn="active"  style="width:5%">
+                                            <div class="flex align-items-center">
+                                                Action <p-sortIcon field="active"></p-sortIcon>
+                            
+                            
+                                            </div>
+                                        </th>
+                            
+                                     
+                                        
+                            
+                                        
+                            
+                                    </tr>
+                                </ng-template>
+                                <ng-template pTemplate="body" let-appointmentbytype>
+                                    <tr>
+                                     
+            
+                                        
+            
+                                        <td>
+                                            <span class="ml-1 vertical-align-middle">{{ appointmentbytype.appTypeName }}</span>
+                                        </td>
+            
+            
+                                        <td>
+                                            <span class="ml-1 vertical-align-middle">{{ appointmentbytype.durationName }}</span>
+                                        </td>
+                                        <td>
+                                            <span class="ml-1 vertical-align-middle">{{ appointmentbytype.cptGroupName }}</span>
+                                        
+                                         
+                                           
+                                       
+                                        </td>
+                                        <td>
+                                            <div class="flex align-items-center justify-content-center gap-2">
+                                                
+                                                <!-- <p-button (click)="onRowEditInit($event,appointmentbytype.recordId)"  pTooltip="Edit" icon="pi pi-pencil"  styleClass="p-button-success"></p-button> -->
+                                                <p-button (click)="confirm($event,appointmentbytype.recordId,'bottom')"  pTooltip="Delete" icon="pi pi-trash"  styleClass="p-button-danger"></p-button>
+                
+                                            </div>
+                                        </td>
+                            
+                                       
+            
+            
+            
+                                        
+                                       
+                            
+                                  
+                                    </tr>
+                                </ng-template>
+                                <ng-template pTemplate="emptymessage">
+                                    <tr>
+                                        <td colspan="7">No record found.</td>
+                                    </tr>
+                                </ng-template>
+                            
+                            
+                                
+                            
+                            </p-table>
+                            
+                            <p-toast></p-toast>
+                
+                
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="card mt-2">
+                <b>
+                    <a class="nav-item nav-link active" id="nav-profile-tab" data-toggle="tab" data-toggle="tab"
+                        role="tab" style="color:rgb(8, 8, 167); margin-left: 20px;" aria-controls="nav-profile"
+                        aria-selected="false">Days:
+                    </a></b>
+                <div class="row mt-2  mb-2 ml-2 mr-2">
+                    <div class="col-sm-12">
+                        <p-checkbox [(ngModel)]="all" [binary]="true" inputId="all"
+                            (onChange)="change()"></p-checkbox>&nbsp;
+                        <label for="ny">All</label> &nbsp; &nbsp; &nbsp;
+                        <p-checkbox [(ngModel)]="sunday" [binary]="true" inputId="sunday"></p-checkbox>&nbsp;
+                        <label for="ny">Sunday</label> &nbsp;
+                        <p-checkbox [(ngModel)]="monday" [binary]="true" inputId="monday"></p-checkbox>&nbsp;
+                        <label for="ny">Monday</label> &nbsp;
+                        <p-checkbox [(ngModel)]="tuesday" [binary]="true" inputId="tuesday"></p-checkbox>&nbsp;
+                        <label for="ny">Tuesday</label> &nbsp;
+                        <p-checkbox [(ngModel)]="wednesday" [binary]="true" inputId="wednesday"></p-checkbox>&nbsp;
+                        <label for="ny">Wednesday</label> &nbsp;
+                        <p-checkbox [(ngModel)]="thursday" [binary]="true" inputId="thursday"></p-checkbox>&nbsp;
+                        <label for="ny">Thursday</label> &nbsp;
+                        <p-checkbox [(ngModel)]="friday" [binary]="true" inputId="friday"></p-checkbox>&nbsp;
+                        <label for="ny">Friday</label> &nbsp;
+                        <p-checkbox [(ngModel)]="saturday" [binary]="true" inputId="saturday"></p-checkbox>&nbsp;
+                        <label for="ny">Saturday</label>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <ng-template pTemplate="footer">
+
+            <button pButton pRipple label="Submit" class="p-button-success" (click)="submit()"></button>
+
+
+        </ng-template>
+
+
+
+    </p-panel>
+
+
+</div>

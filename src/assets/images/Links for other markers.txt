@@ -1,0 +1,8 @@
+Yellow Marker = 'http://maps.google.com/mapfiles/ms/icons/yellow-dot.png';
+Orange Marker = 'http://maps.google.com/mapfiles/ms/icons/orange-dot.png';
+Blue Marker	  = 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png';
+
+
+
+Red Marker 	 = 'http://maps.google.com/mapfiles/ms/icons/red-dot.png';
+Green Marker = 'http://maps.google.com/mapfiles/ms/icons/green-dot.png';

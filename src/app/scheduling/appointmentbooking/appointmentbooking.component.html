@@ -1,0 +1,197 @@
+<div class="card">
+  <br />
+  <br />
+
+  <p-panel>
+
+    <ng-template pTemplate="header"> <span class="text-primary font-semibold text-xl">Book an
+        Appointment</span></ng-template>
+
+
+
+    <app-paitentdemographics (mrSearchEvent)="searchMrEvent($event)"></app-paitentdemographics>
+
+
+    <br />
+
+    <div class="container">
+
+      <div class="row " >
+        <div class="col-sm-3">
+          <p-dropdown [options]="provider" [(ngModel)]="selectedProviders" placeholder="Select Provider" optionLabel="name" inputId="float-label"></p-dropdown>
+    
+
+        </div>
+        <div class="col-sm-3">
+          <p-dropdown [options]="speciality" [(ngModel)]="selectedSpeciality" placeholder="Select Speciality" optionLabel="name" inputId="float-label"></p-dropdown>
+             
+
+        </div>
+
+        <div class="col-sm-3">
+          <p-dropdown [options]="sites" [(ngModel)]="selectedSites" placeholder="Select Sites" optionLabel="name" inputId="float-label"></p-dropdown>
+    
+        </div>
+        <div class="col-sm-3">
+          <p-dropdown [options]="facilities" [(ngModel)]="selectedFacility" placeholder="Select Facility" optionLabel="name" inputId="float-label"></p-dropdown>
+    
+        </div>
+      </div>
+
+
+
+      <div class="row mt-2" >
+        <div class="col-sm-3">
+          <p-dropdown [options]="purpose" [(ngModel)]="selectedPurpose" optionLabel="name"
+            placeholder="Purpose of Visit" [required]="true"></p-dropdown>
+
+        </div>
+        <div class="col-sm-3">
+          <p-dropdown [options]="visittype" [(ngModel)]="selectedVisitType" optionLabel="name" placeholder="Visit Type"
+            [required]="true"></p-dropdown>
+
+        </div>
+
+        <div class="col-sm-3">
+          <p-dropdown [options]="referred" [(ngModel)]="selectedReferredBy" optionLabel="name" placeholder="Referred By"
+            [required]="true"></p-dropdown>
+        </div>
+        <div class="col-sm-3">
+          <p-calendar [(ngModel)]="date" placeholder="Time" [showTime]="true" [showSeconds]="true"></p-calendar>
+
+        </div>
+      </div>
+
+
+
+
+      <div class="row mt-2">
+
+        
+
+        <div class="col-sm-3">
+          <p-dropdown [options]="type" [(ngModel)]="selectedType" optionLabel="name" placeholder="Type"
+            [required]="true"></p-dropdown>
+
+        </div>
+        <div class="col-sm-3">
+          <p-dropdown [options]="duration" [(ngModel)]="selectedDuration" optionLabel="name" placeholder="Duration"
+            [required]="true"></p-dropdown>
+        </div>
+        <div class="col-sm-3">
+          <p-dropdown [options]="location" [(ngModel)]="selectedLocation" optionLabel="name" placeholder="Location"
+            [required]="true"></p-dropdown>
+
+        </div>
+
+        <div class="col-sm-3">
+          <p-dropdown [options]="criteria" [(ngModel)]="selectedCriteria" optionLabel="name"
+            placeholder="Appointment Criteria" [required]="true"></p-dropdown>
+
+        </div>
+      </div>
+
+
+
+
+
+
+      <div class="row mt-2">
+
+
+        
+
+
+
+        <div class="col-sm-3">
+          <p-dropdown [options]="notified" [(ngModel)]="selectedNotified" optionLabel="name"
+            placeholder="Patient Notified" [required]="true"></p-dropdown>
+
+        </div>
+        <div class="col-sm-3">
+          <p-dropdown [options]="status" [(ngModel)]="selectedStatus" optionLabel="name"
+            placeholder="Appointment Status" [required]="true"></p-dropdown>
+
+        </div>
+
+
+        <div class="col-sm-3">
+
+          <p-dropdown [options]="payer" [(ngModel)]="selectedPayer" optionLabel="name" placeholder="Payer Info"
+            [required]="true"></p-dropdown>
+
+        </div>
+
+
+        <!-- <div class="col-sm-3">
+
+          <input pInputText disabled placeholder="Insurrance No" [(ngModel)]="insurranceNo" />
+
+
+
+        </div> -->
+
+      </div>
+
+
+      
+
+
+
+      <!-- <div class="row mt-2">
+
+
+        
+
+
+
+
+      </div> -->
+
+
+
+
+      <br />
+
+      <div class="row">
+        <div class="col-sm-12">
+          <label for="username"><b>Insurrance No:</b> {{insurranceNo}} </label>&nbsp;
+
+
+          <p-radioButton name="consult" value="0" [(ngModel)]="appointment" inputId="appointment1"></p-radioButton>
+          <label for="appointment1" class="ml-2">Consultation</label>
+
+          &nbsp;
+          <p-radioButton name="nonconsult" value="1" [(ngModel)]="appointment" inputId="appointment2"></p-radioButton>
+          <label for="appointment2" class="ml-2">Non Consultation</label>
+        </div>
+
+
+
+      </div>
+
+
+
+
+
+
+
+
+    </div>
+
+
+
+
+    <ng-template pTemplate="footer">
+
+      <button pButton pRipple label="Submit" class="p-button-success" (click)="submit()"></button>
+
+
+    </ng-template>
+
+
+
+  </p-panel>
+
+
+</div>

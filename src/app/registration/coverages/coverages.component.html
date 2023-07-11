@@ -1,0 +1,622 @@
+<div class="card">
+    <br />
+    <br />
+
+    
+    <p-panel>
+        <ng-template pTemplate="header"> <span class="text-primary font-semibold text-xl">Coverage</span></ng-template>
+    
+
+        <app-paitentdemographics></app-paitentdemographics>
+
+
+    </p-panel> 
+
+
+    <br/> 
+
+
+
+     <p-panel>
+
+         <ng-template pTemplate="header">
+            <div class="header-container">
+              <div class="label-container">
+                <span class="text-primary font-semibold text-xl">Subscriber Information</span>
+              </div>
+              <span>
+                    
+                <input pInputText class="p-inputtext-sm" id="mrno"  placeholder="MrNo" [(ngModel)]="searchMr" />
+                <!-- <label htmlFor="mrno" style="float: left;"> MrNo</label>  -->
+                <!-- <p-button label="Search"  (click)="search()"></p-button> -->
+                <p-button icon="pi pi-search"  (click)="search()" styleClass="p-button-sm"></p-button>
+              </span>
+        
+        
+            <!-- <div > -->
+                <!-- <p-button label="New Subscriber" style="background-color: green;" (click)="search()" class="green-button"></p-button> -->
+                <button  pripple="" style="margin-left: 50px;" class="p-ripple p-element p-button-success p-button p-component" type="button"><!----><span class="pi pi-user-plus p-button-icon p-button-icon-left ng-star-inserted" aria-hidden="true"></span><!---->
+                    <span class="p-button-label ng-star-inserted" aria-hidden="false" [routerLink]="['addnewsubscriber']" >Add New Subscriber</span><!----><!----></button>
+                
+            <!-- </div> -->
+        
+        
+            </div>
+          </ng-template>
+           
+          
+        <!-- <ng-template pTemplate="header"> <span class="text-primary font-semibold text-xl">Subscriber Information</span>
+                <span
+                style="    margin-left: 86%;"> <p-button style="float:right" icon="pi pi-filter"
+                    styleClass="p-button-rounded p-button-secondary" (click)="ClickFilter()"></p-button>
+            </span>
+            </ng-template> -->
+
+  <!-- 
+        <div class=" d-flex justify-content-between col-md-12 mb-4 ">
+
+
+  
+
+
+            <div class="">
+
+                <p-button label="Search"  (click)="searchsubscriberinfo()"></p-button>
+            </div>
+
+
+        </div> -->
+
+
+
+
+
+        <div class=" card-container">
+            <div>
+
+               
+
+                <p-table #table [value]="insuredsubs" dataKey="id" [rows]="10" [showCurrentPageReport]="true"
+                    [rowsPerPageOptions]="[10, 25, 50]" [paginator]="true"
+                    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+                    [globalFilterFields]="['CompanyOrIndividual', 'LastName', 'InsuredIDNo', 'mrNo','PageNumber', 'PageSize']">
+
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th >
+                                <div class="flex align-items-center">
+                                    Subscriber Name
+                                    <p-columnFilter type="text" field="subscriberName" display="menu"></p-columnFilter>
+                                </div>
+                            </th>
+
+                            <th >
+                                <div class="flex align-items-center">
+                                    Insurance Carrier
+                                    <p-columnFilter type="text" field="insuranceCarrier"
+                                        display="menu"></p-columnFilter>
+                                </div>
+                            </th>
+
+
+                            <th >
+                                <div class="flex align-items-center">
+                                    Insured IDNo
+                                    <p-columnFilter type="text" field="insuredIDNo" display="menu"></p-columnFilter>
+                                </div>
+                            </th>
+
+
+
+
+
+                            <th >
+                                <div class="flex align-items-center">
+                                    Type
+                                    <p-columnFilter type="text" field="type" display="menu"></p-columnFilter>
+                                </div>
+                            </th> 
+
+
+
+                            <th >
+                                <div class="flex align-items-center">
+                                    Active
+                                    <p-columnFilter type="text" field="active" display="menu"></p-columnFilter>
+                                </div>
+                            </th>
+
+                            <th>
+                                <div class="flex align-items-center">
+                                    Carrier Address
+                                    <p-columnFilter type="text" field="carrierAddress" display="menu"></p-columnFilter>
+                                </div>
+                            </th>
+
+                            
+                            <th>
+                                <div class="flex align-items-center">
+                                    MRNo
+                                    <p-columnFilter type="text" field="carrierAddress" display="menu"></p-columnFilter>
+                                </div>
+                            </th>
+
+                            <th>
+                                <div class="flex align-items-center">
+                               Actions
+                                    <p-columnFilter type="text" field="carrierAddress" display="menu"></p-columnFilter>
+                                </div>
+                            </th>
+
+
+
+
+
+
+
+
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-inssub>
+                        <tr>
+
+
+
+
+                            <td>
+                                <span class="ml-1 vertical-align-middle">{{ inssub.subscriberName }}</span>
+                            </td>
+
+
+                            <td>
+                                <span class="ml-1 vertical-align-middle">{{ inssub.insuranceCarrier }}</span>
+                            </td>
+
+                            <td>
+                                <span class="ml-1 vertical-align-middle">{{ inssub.insuredIDNo }}</span>
+                            </td>
+
+                            <td>
+                                <span class="ml-1 vertical-align-middle">{{ inssub.type }}</span>
+                            </td>
+
+
+
+                            <td>
+                                <span class="ml-1 vertical-align-middle">{{ inssub.active }}</span>
+                            </td>
+
+
+
+                            <td>
+                                <span class="ml-1 vertical-align-middle">{{ inssub.carrierAddress }}</span>
+                            </td> 
+
+                            <td>
+                                <span class="ml-1 vertical-align-middle">{{ inssub.mrNo }}</span>
+                            </td> 
+
+<!--                                          
+                <td>
+                    <a [routerLink]="['/scheduling/appointment/history']" [queryParams]="{mrNo: appointment.mrNo}"  routerLinkActive="active">
+                        Insurance Coverage
+                       </a>
+                </td>  -->
+
+
+                            <td>
+                             
+                           
+                                <a [routerLink]="['/scheduling/appointment/edit']" routerLinkActive="active">
+                                    <i class="pi pi-user-edit"></i><span>Edit</span>
+                                </a>
+                           
+                            </td>
+
+
+                            <!-- <td >
+                             
+                             
+                       
+                           
+                
+                    <p-button  icon="pi pi-times" (click)="confirmCancel($event,appointment,'bottom')"  pTooltip="Cancel Appointment"  styleClass="p-button-secondary"></p-button>
+                
+                         </td>  -->
+
+
+
+                        
+                            <!-- <td >
+                             
+                             
+                       
+                           
+                
+                                <p-button  icon="pi pi-history" (click)="Reschedule($event,appointment,'bottom')" pTooltip="Reschedule Appointment"   styleClass="p-button-info"></p-button>
+                            
+                                        </td>  --> 
+
+
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="emptymessage">
+                        <tr>
+                            <td colspan="7">No Subscriber found.</td>
+                        </tr>
+                    </ng-template>
+
+
+
+
+                </p-table>
+
+                <p-toast></p-toast>
+
+
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+    </p-panel>
+
+
+
+
+    <!-- <p-panel>
+        <ng-template pTemplate="header"> <span class="text-primary font-semibold text-xl">Insurance Coverage</span>
+       </ng-template> -->
+  <!-- 
+        <span class="p-float-label"> -->
+  <!-- <div class=" d-flex justify-content-between col-md-12 mb-4"> -->
+  <!-- 
+    <div class=" col-md-6">
+        <input pInputText id="mrno" [(ngModel)]="searchMr" placeholder=" MrNo "  style="width: 287px;"/>
+        <label htmlFor="mrno"> MrNo</label>
+        
+    </div> -->
+<!--   
+    <span>
+                    
+        <input pInputText class="p-inputtext-sm" id="mrno"  placeholder="MrNo" [(ngModel)]="searchMr" />
+        <!-- <label htmlFor="mrno" style="float: left;"> MrNo</label>  -->
+        <!-- <p-button label="Search"  (click)="search()"></p-button> -->
+        <!-- <p-button icon="pi pi-search"  (click)="search()" styleClass="p-button-sm"></p-button>
+      </span>
+
+
+    <div>
+        <p-button label="New Subscriber" style="background-color: green;" (click)="search()" class="green-button"></p-button> 
+        <button pripple="" class="p-ripple p-element p-button-success p-button p-component" type="button"><span class="pi pi-user-plus p-button-icon p-button-icon-left ng-star-inserted" aria-hidden="true"></span>
+            <span class="p-button-label ng-star-inserted" aria-hidden="false" [routerLink]="['addnewsubscriber']" >Add New Subscriber</span></button>
+         
+    </div> 
+ 
+
+    
+    
+    <!-- </span> -->
+        
+   <!-- </div> -->
+
+
+
+        <!-- <div class=" card-container">
+            <div>
+
+                <!-- [loading]="loading" -->
+    <!-- 
+                <p-table #table [value]="coveragesarray" dataKey="id" [rows]="10" [showCurrentPageReport]="true"
+                    [rowsPerPageOptions]="[10, 25, 50]" [paginator]="true"
+                    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+                    [globalFilterFields]="['mrNo']">
+
+                    <ng-template pTemplate="header">
+                        <tr> -->
+
+
+
+
+   <!-- 
+
+                            <th style="width:9%">
+                                <div class="flex align-items-center">
+                                    Type
+                                    <p-columnFilter type="text" field="type" display="menu"></p-columnFilter>
+                                </div>
+                            </th>
+
+
+
+
+
+                            <th style="width:7%">
+                                <div class="flex align-items-center">
+                                    Subscriber Name
+                                    <p-columnFilter type="text" field="subscriberName" display="menu"></p-columnFilter>
+                                </div>
+                            </th>
+
+                            <th style="width:7%">
+                                <div class="flex align-items-center">
+                                   Insurrance Carrier
+                                    <p-columnFilter type="text" field="payerName" display="menu"></p-columnFilter>
+                                </div>
+                            </th>
+
+
+                            <th style="width:12%">
+                                <div class="flex align-items-center">
+                                    Termination Date <p-sortIcon field="terminationDate"></p-sortIcon>
+                                    <p-columnFilter type="date" field="terminationDate" display="menu"></p-columnFilter>
+                                </div>
+                            </th>
+
+
+
+                            <th style="width:7%">
+                                <div class="flex align-items-center">
+                                    Insurrance ID No
+                                    <p-columnFilter type="text" field="memberId" display="menu"></p-columnFilter>
+                                </div>
+                            </th>
+
+
+
+                                 <!-- style="min-width:10rem" -->
+                                 <!-- <th style="width:5%">
+                                    <div class="flex align-items-center">
+                                        Relation Code
+                                        <p-columnFilter type="text" field="relationCode" display="menu"></p-columnFilter>
+                                    </div>
+                                </th>
+
+
+
+                                      
+                            <!-- style="min-width:10rem" -->
+                            <!-- <th style="width:5%">
+                                <div class="flex align-items-center">
+                                    Career Address
+                                    <p-columnFilter type="text" field="careerAddress" display="menu"></p-columnFilter>
+                                </div>
+                            </th>
+
+                            <th style="width:8%">
+                                <div class="flex align-items-center">
+                                    Priority
+                                    <p-columnFilter type="text" field="priority" display="menu"></p-columnFilter>
+                                </div>
+                            </th>   -->
+
+
+
+                            <!-- <th style="width:12%">
+                                <div class="flex align-items-center">
+                                    Plan
+                                    <p-columnFilter type="text" field="plan" display="menu"></p-columnFilter>
+                                </div>
+                            </th> -->
+
+
+
+
+
+                        <!-- </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-coverages>
+                        <tr> -->
+
+
+
+   <!-- 
+                            <td>
+                                <span class="ml-1 vertical-align-middle">{{ coverages.type }}</span>
+                            </td>
+
+
+                            <td>
+                                <span class="ml-1 vertical-align-middle">{{ coverages.subscriberName }}</span>
+                            </td>
+
+
+                            <td>
+                                <span class="ml-1 vertical-align-middle">{{ coverages.payerName }}</span>
+                            </td>
+
+
+                            <td>
+                                <span class="ml-1 vertical-align-middle">{{ coverages.terminationDate | date:
+                                    'MM/dd/yyyy' }}</span>
+                            </td>
+
+
+
+                            <td>
+                                <span class="ml-1 vertical-align-middle">{{ coverages.memberId }}</span>
+                            </td>
+
+
+
+                            <td>
+                                <span class="ml-1 vertical-align-middle">{{ coverages.relationCode }}</span>
+                            </td>
+
+
+
+                            
+                            <td>
+                                <span class="ml-1 vertical-align-middle">{{ coverages.careerAddress }}</span>
+                            </td>
+
+
+
+                            <td>
+                                <span class="ml-1 vertical-align-middle">{{ coverages.priority }}</span>
+                            </td> -->
+
+
+
+
+                            <!-- <td>
+                                <span class="ml-1 vertical-align-middle">{{ coverages.plan }}</span>
+                            </td> -->
+
+                          
+
+
+
+
+                           
+
+                        
+
+                            <!--                 
+                <td>
+                    <a [routerLink]="['/scheduling/appointment/history']" [queryParams]="{mrNo: appointment.mrNo}"  routerLinkActive="active">
+                        Insurance Coverage
+                       </a>
+                </td> -->
+
+
+                            <!-- <td   >
+                             
+                           
+                                <a [routerLink]="['/scheduling/appointment/edit']" routerLinkActive="active">
+                                    <i class="pi pi-user-edit"></i><span>Edit</span>
+                                </a>
+                           
+                            </td> -->
+
+
+                            <!-- <td >
+                             
+                             
+                       
+                           
+                
+                    <p-button  icon="pi pi-times" (click)="confirmCancel($event,appointment,'bottom')"  pTooltip="Cancel Appointment"  styleClass="p-button-secondary"></p-button>
+                
+                         </td> 
+
+
+
+                        
+                            <td >
+                             
+                             
+                       
+                           
+                
+                                <p-button  icon="pi pi-history" (click)="Reschedule($event,appointment,'bottom')" pTooltip="Reschedule Appointment"   styleClass="p-button-info"></p-button>
+                            
+                                        </td>  -->
+
+
+                        <!-- </tr>
+                    </ng-template>
+                    <ng-template pTemplate="emptymessage">
+                        <tr>
+                            <td colspan="7">No appointment found.</td>
+                        </tr>
+                    </ng-template> -->
+
+
+
+
+                <!-- </p-table>
+
+                <p-toast></p-toast>
+
+
+            </div>
+        </div> -->
+
+
+
+
+
+
+
+
+    <!-- </p-panel> -->
+
+
+
+
+    <ng-template pTemplate="footer">
+
+
+
+    </ng-template>
+
+
+
+
+
+<!-- <p-dialog header="Filter" [(visible)]="filter" [breakpoints]="{ '960px': '75vw' }" [style]="{ width: '80vw' }"
+    [draggable]="false" [maximizable]="true">
+
+
+    <br /><br /> -->
+
+
+<!-- 
+    <div class="container-fluid">
+
+
+
+        <div class="row">
+
+            
+            <div class="col-md-3">
+                <p-dropdown [options]="type" [(ngModel)]="selectedtype" optionLabel="label" optionValue="value" placeholder="Type" 
+                    [required]="true"></p-dropdown>
+
+            </div>
+
+              <div class="col-md-3">
+
+
+                <input pInputText id="lastname" [(ngModel)]="LastName"  style="width: 287px;"
+                placeholder=" Last Name " />
+                
+            </div>
+
+    
+
+            <div class="col-md-3">
+                <input pInputText id="insuranceidno" [(ngModel)]="InsuranceIdNo" placeholder=" Insurance Id No "  style="width: 287px;"/>
+                
+
+                
+            </div>
+
+          
+           
+
+        </div>
+
+
+    </div>
+
+
+
+
+
+    <p-button style="float:right" label="Submit" (click)="SubmitFilter()"></p-button>
+
+
+</p-dialog> -->
+
+
+
+<!-- <p-confirmDialog [style]="{ width: '50vw' }" key="positionDialog" [position]="position"
+    rejectButtonStyleClass="p-button-outlined"></p-confirmDialog> -->

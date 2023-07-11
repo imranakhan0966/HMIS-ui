@@ -1,0 +1,189 @@
+<header id="header" class="header fixed-top d-flex align-items-center" *ngIf="loggedIn">
+	<div class="d-flex align-items-center justify-content-between w-100">
+		<div class="d-flex w-10">
+			<a class="logo d-flex align-items-center">
+				<span class="d-none d-lg-block"><b>HMIS</b></span>
+			</a>
+			<i *ngIf="openAside" (click)="closeSidebar()" class="pi pi-bars toggle-sidebar-btn"></i>
+			<i *ngIf="closeAside" (click)="openSidebar()" class="pi pi-bars toggle-sidebar-btn"></i>
+		</div>
+		<div class="current-usr d-flex justify-content-around mr-2 mt-2">
+			<p-splitButton label={{this.currentUser.userId}} icon="pi pi-user" [model]="this.items"
+				styleClass="p-button-rounded mr-2 mb-2 p-button-info"></p-splitButton>
+		</div>
+	</div>
+</header>
+
+	<aside id="sidebar" class="sidebar px-0">
+		<ul class="sidebar-nav" id="sidebar-nav">
+
+			<li class="nav-item"  >
+				<a *ngxPermissionsOnly="['Control Panel']" class="nav-link collapsed" data-bs-target="#userslist" data-bs-toggle="collapse" href="#">
+					<i class="pi pi-map-marker"></i><span>Control Panel</span><i
+						class="pi pi-chevron-down ms-auto"></i>
+				</a>
+
+				
+				<ul id="userslist" *ngxPermissionsOnly="['Control Panel:Human Resources']" class="nav-content collapse" data-bs-toggle="collapse"  data-bs-parent="#sidebar-nav">
+					
+					<li class="nav-item" *ngxPermissionsOnly="['Control Panel:Eligibility Logs']">
+						<!-- <a class="nav-link collapsed" data-bs-target="#userscreate" data-bs-toggle="collapse"  href="#"> -->
+							<a [routerLink]="['/control-panel/eligibility-logs/list']" >
+								<i class="pi pi-map-marker"></i><span>Eligibility Logs</span>
+						</a>
+					</li>
+
+					<!-- <li class="nav-item" *ngxPermissionsOnly="['Control Panel:Eligibility Verification']">
+						
+							<a [routerLink]="['/control-panel/eligibility-verification/list']" >
+								<i class="pi pi-map-marker"></i><span>Eligibility Verification</span>
+						</a>
+					</li> -->
+					<li class="nav-item" >
+						<!-- <a class="nav-link collapsed" data-bs-target="#userscreate" data-bs-toggle="collapse"  href="#"> -->
+							<a [routerLink]="['/control-panel/users/list']" >
+							<i class="pi pi-map-marker"></i><span>Users</span>
+						</a>
+					</li>
+
+
+					<li class="nav-item" >
+						<!-- <a class="nav-link collapsed" data-bs-target="#userscreate" data-bs-toggle="collapse"  href="#"> -->
+							<a [routerLink]="['/control-panel/users/role']" >
+							<i class="pi pi-map-marker"></i><span>Roles</span>
+						</a>
+					</li>
+
+
+					<li class="nav-item" *ngxPermissionsOnly="['Control Panel:HR Schedule']">
+						<!-- <a class="nav-link collapsed" data-bs-target="#userscreate" data-bs-toggle="collapse"  href="#"> -->
+							<a [routerLink]="['/control-panel/hr-schedule/list']" >
+							<i class="pi pi-map-marker"></i><span>HR Schedule</span>
+						</a>
+					</li>
+					
+					<!-- <li class="nav-item" >
+						
+							<a [routerLink]="['/registration/demographics']" >
+							<i class="pi pi-map-marker"></i><span>Demographics</span>
+						</a>
+					</li> -->
+
+					<!-- <ul id="userscreate" class="nav-content collapse" data-bs-toggle="collapse"  data-bs-parent="#userslist">
+						<li *ngxPermissionsOnly="['Control Panel:Human Resources:View']" >
+							<a [routerLink]="['/control-panel/users/list']" >
+								<i class="pi pi-map-marker"></i><span>List</span>
+							</a>
+						</li>
+
+						<li  *ngxPermissionsOnly="['Control Panel:Human Resources:Add']" >
+							<a [routerLink]="['/control-panel/users/create']" routerLinkActive="active">
+								<i class="pi pi-map-marker"></i><span>Create</span>
+							</a>
+						</li>
+
+					
+					
+					</ul> -->
+					
+				</ul>
+			<!-- <ul>
+				<li class="nav-item" *ngxPermissionsOnly="['Control Panel:Eligibility Logs']" class="nav-link collapsed"  data-bs-toggle="collapse" href="#">
+					
+						<a [routerLink]="['/control-panel/eligibility-logs/list']" >
+						<i class="pi pi-map-marker"></i><span>Eligibility Logs</span>
+					</a>
+				</li>
+			</ul> -->
+
+
+			
+				<a *ngxPermissionsOnly="['Registration']" class="nav-link collapsed" data-bs-target="#Registration" data-bs-toggle="collapse" href="#">
+					<i class="pi pi-map-marker"></i><span>Registration</span><i
+						class="pi pi-chevron-down ms-auto"></i>
+				</a>
+				<ul id="Registration" *ngxPermissionsOnly="['Registration:Demographics']" class="nav-content collapse" data-bs-toggle="collapse"  data-bs-parent="#sidebar-nav">
+					
+
+					
+
+				   <li class="nav-item" >
+						
+							<a [routerLink]="['/registration/demographics/list']" >
+							<i class="pi pi-map-marker"></i><span>Demographics</span>
+						</a>
+					</li> 
+					<li class="nav-item" >
+						
+						<a [routerLink]="['/registration/coverages']" >
+						<i class="pi pi-map-marker"></i><span>Coverages</span>
+					</a>
+				</li> 
+
+
+				<li class="nav-item" >
+						
+					<a [routerLink]="['/registration/temporarydemographics/list']" >
+					<i class="pi pi-map-marker"></i><span>Temporary Demographics</span>
+				</a>
+			</li> 
+
+				
+				
+				
+				</ul>
+
+
+
+
+
+
+
+
+
+				<a *ngxPermissionsOnly="['Scheduling']" class="nav-link collapsed" data-bs-target="#Scheduling" data-bs-toggle="collapse" href="#">
+					<i class="pi pi-map-marker"></i><span>Scheduling</span><i
+						class="pi pi-chevron-down ms-auto"></i>
+				</a>
+				<ul id="Scheduling"  class="nav-content collapse" data-bs-toggle="collapse"  data-bs-parent="#sidebar-nav">
+					<li class="nav-item" *ngxPermissionsOnly="['Scheduling:Appointment Booking']">
+						<!-- <a class="nav-link collapsed" data-bs-target="#userscreate" data-bs-toggle="collapse"  href="#"> -->
+							<a [routerLink]="['/scheduling/appointment/list']" >
+							<i class="pi pi-map-marker"></i><span>Appointments</span>
+						</a>
+					</li>
+
+
+					<li class="nav-item" *ngxPermissionsOnly="['Scheduling:View Appointments']">
+							<a [routerLink]="['/scheduling/appointment/dashboard']" >
+							<i class="pi pi-map-marker"></i><span>Appointment Dashboard</span>
+						</a>
+					</li>
+
+<!-- 
+					<li class="nav-item" *ngxPermissionsOnly="['Scheduling:Search Appointment']">
+							<a [routerLink]="['/scheduling/searchappointment']" >
+							<i class="pi pi-map-marker"></i><span>Search Appointment</span>
+						</a>
+					</li> -->
+
+					
+
+				
+				
+				</ul>
+
+
+
+
+
+
+
+				
+			</li>
+		
+		
+
+
+		</ul>
+	</aside>

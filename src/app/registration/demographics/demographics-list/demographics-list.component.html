@@ -1,0 +1,381 @@
+
+<div class="card">
+    <br/>
+    <br/>
+    
+    <p-panel>
+        <ng-template pTemplate="header"> <span class="text-primary font-semibold text-xl">Demographics List</span>
+            <span
+            style="    margin-left: 86%;"> <p-button style="float:right" icon="pi pi-filter"
+                styleClass="p-button-rounded p-button-secondary" (click)="ClickFilter()"></p-button>
+        </span>
+        
+        </ng-template>
+        <div class="row">
+            <p-button icon="pi pi-user-plus"  (click)="buttonRoute('/registration/demographics/create')" label="Create" styleClass="p-button-success" style="float:right; margin-left: 89%; "></p-button>
+            
+
+        </div>
+      
+        <!-- <app-paitentdemographics></app-paitentdemographics>
+
+        <br/> -->
+        <!-- <app-family></app-family>        <app-history></app-history> -->
+
+        
+        <div class="flex card-container">
+            <div  >
+    
+        
+                
+            
+
+                <p-table
+                [style]="{'width':'100%','overflow':'auto!important'}"
+                #table
+                [value]="RegPatient"
+                dataKey="id"
+                [rows]="100"
+                [showCurrentPageReport]="true"
+                [rowsPerPageOptions]="[10, 25, 50]"
+              
+                [paginator]="true"
+                currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+                [globalFilterFields]="['mrNo', 'patientBirthDate', 'patientPicture','personCellPhone','personFirstName','personSex']"
+            >
+                
+                <ng-template pTemplate="header">
+                    <tr>
+            
+            
+                     
+            
+                      
+                        <th  >
+                            <div class="flex align-items-center">
+                           MrNo
+                                <p-columnFilter type="text" field="mrNo" display="menu"></p-columnFilter>
+                            </div>
+                        </th>
+
+
+
+                        <th >
+                            <div class="flex align-items-center">
+                                 Name
+                                <p-columnFilter type="text" field="personFirstName" display="menu"></p-columnFilter>
+                            </div>
+                        </th>
+
+
+                        <th  >
+                            <div class="flex align-items-center">
+                                 Email
+                                <p-columnFilter type="text" field="personEmail" display="menu"></p-columnFilter>
+                            </div>
+                        </th>
+
+
+                        <th  >
+                            <div class="flex align-items-center">
+                                Cell Phone
+                                <p-columnFilter type="text" field="personCellPhone" display="menu"></p-columnFilter>
+                            </div>
+                        </th>
+
+
+
+                        <th  >
+                            <div class="flex align-items-center">
+                               Sex
+                                <p-columnFilter type="text" field="personSex" display="menu"></p-columnFilter>
+                            </div>
+                        </th>
+
+                        <th >
+                            <div class="flex align-items-center">
+                                 SSN
+                                <p-columnFilter type="text" field="personSocialSecurityNo" display="menu"></p-columnFilter>
+                            </div>
+                        </th>
+
+
+                        
+                        <th  >
+                            <div class="flex align-items-center">
+                                 Zip
+                                <p-columnFilter type="text" field="personZipCode" display="menu"></p-columnFilter>
+                            </div>
+                        </th>
+
+
+
+
+
+
+
+                        
+
+
+
+                        <th  >
+                            <div class="flex align-items-center">
+                                DOB
+                                <p-columnFilter type="text" field="patientBirthDate" display="menu"></p-columnFilter>
+                            </div>
+                        </th>
+
+
+
+
+                        
+            
+                     
+                        
+            
+                      
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-patient>
+                    <tr>
+
+
+
+                       
+                     
+                        <td>
+                            <span class="ml-1 vertical-align-middle">{{ patient.mrNo }}</span>
+                        </td>
+
+                        <td>
+                            <span class="ml-1 vertical-align-middle">{{ patient.personFirstName }}</span>
+                        </td>
+            
+
+                        <td>
+                            <span class="ml-1 vertical-align-middle">{{ patient.personEmail }}</span>
+                        </td>
+            
+                        <td>
+                            <span class="ml-1 vertical-align-middle">{{ patient.personCellPhone }}</span>
+                        </td>
+
+
+                        <td>
+                            <span class="ml-1 vertical-align-middle">{{ patient.personSex }}</span>
+                        </td>
+
+                        <td>
+                            <span class="ml-1 vertical-align-middle">{{ patient.personSocialSecurityNo }}</span>
+                        </td>
+
+                        <td>
+                            <span class="ml-1 vertical-align-middle">{{ patient.personZipCode }}</span>
+                        </td>
+            
+                        
+                     
+
+
+                        <td>
+                            <span class="ml-1 vertical-align-middle">{{ patient.patientBirthDate | date: 'MM/dd/yyyy' }}</span>
+                        </td>
+
+
+
+        
+            
+            
+            
+            
+                   
+                  
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="emptymessage">
+                    <tr>
+                        <td colspan="7">No patient found.</td>
+                    </tr>
+                </ng-template>
+            
+            
+                
+            
+            </p-table>
+                
+                <!-- <p-table
+              
+                    #table
+                    [value]="Patient"
+                    dataKey="id"
+                    [rows]="10"
+                    [showCurrentPageReport]="true"
+                    [rowsPerPageOptions]="[10, 25, 50]"
+                  
+                    [paginator]="true"
+                    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+                    [globalFilterFields]="['memberId', 'payerName', 'plan']"
+                >
+                    
+                    <ng-template pTemplate="header">
+                        <tr>
+                
+                
+                         
+                
+                          
+                            <th  style="width:5%">
+                                <div class="flex align-items-center">
+                               Member Id
+                                    <p-columnFilter type="text" field="memberId" display="menu"></p-columnFilter>
+                                </div>
+                            </th>
+
+
+
+                            <th  style="width:5%">
+                                <div class="flex align-items-center">
+                                    Payer Name
+                                    <p-columnFilter type="text" field="payerName" display="menu"></p-columnFilter>
+                                </div>
+                            </th>
+
+
+
+                            <th  style="width:5%">
+                                <div class="flex align-items-center">
+                                    Plan
+                                    <p-columnFilter type="text" field="plan" display="menu"></p-columnFilter>
+                                </div>
+                            </th>
+
+
+
+
+                            
+                
+                         
+                            
+                
+                          
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-patient>
+                        <tr>
+                         
+                            <td>
+                                <span class="ml-1 vertical-align-middle">{{ patient.memberId }}</span>
+                            </td>
+
+                            <td>
+                                <span class="ml-1 vertical-align-middle">{{ patient.payerName }}</span>
+                            </td>
+                
+                            
+                            <td>
+                                <span class="ml-1 vertical-align-middle">{{ patient.plan }}</span>
+                            </td>
+
+
+
+            
+                
+                
+                
+                
+                       
+                      
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="emptymessage">
+                        <tr>
+                            <td colspan="7">No patient found.</td>
+                        </tr>
+                    </ng-template>
+                
+                
+                    
+                
+                </p-table> -->
+                
+                <p-toast></p-toast>
+    
+    
+            </div>
+        </div>
+        
+        
+        <ng-template pTemplate="footer">
+           
+            <!-- <p-button icon="pi pi-user-plus" (click)="buttonRoute('/registration/demographics/create')" label="Create" styleClass="p-button-success"></p-button> -->
+
+      
+        </ng-template>
+        
+        
+    
+    </p-panel>
+    
+    
+    </div>
+    
+
+
+
+
+    
+
+<p-dialog header="Filter" [(visible)]="filter" [breakpoints]="{ '960px': '75vw' }" [style]="{ width: '80vw' }"
+[draggable]="false" [maximizable]="true">
+
+
+<br /><br />
+
+
+
+<div class="container-fluid">
+
+
+   <div class="row">
+
+<div class="col-3">
+    <input pInputText   placeholder="MrNo" [(ngModel)]="mrNo" />
+
+
+</div>
+
+
+<div class="col-3">
+    <input pInputText   placeholder="Name" />
+
+    
+</div>
+
+
+<div class="col-3">
+
+    <input pInputText   placeholder="Phone" />
+
+</div>
+
+
+<div class="col-3">
+    <p-dropdown [options]="genders" [(ngModel)]="selectedGender" placeholder="Select Gender" optionLabel="name" inputId="float-label"></p-dropdown>
+    
+</div>
+
+
+
+   </div>
+
+
+</div>
+
+<br/>
+
+
+
+<p-button style="float:right" label="Submit"  (click)="submitFilter()"></p-button>
+
+
+</p-dialog>

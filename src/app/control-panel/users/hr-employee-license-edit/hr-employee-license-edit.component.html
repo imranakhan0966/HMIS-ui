@@ -1,0 +1,50 @@
+
+<div class="card">
+<br/>
+<br/>
+
+<p-panel>
+
+
+
+    <ng-template pTemplate="header">
+        <div class="flex align-items-center text-primary">
+            <span class="pi pi-car"></span>
+            <span class="font-bold text-lg">License</span>
+        </div>
+    </ng-template>
+    
+    <div class="flex card-container">
+        <input pInputText type="text" [(ngModel)]="licenseName" placeholder="License Name"   />
+    
+    
+        
+    
+        <input pInputText type="number" [(ngModel)]="licenseNo" placeholder="License Number"   />
+    
+       
+            <p-calendar [(ngModel)]="licenseExpiry" aria-label="Expiry Date" placeholder="Expiry Date" [showIcon]="true"></p-calendar>
+            
+            <p-checkbox [(ngModel)]="licenseStatus" [binary]="true" inputId="license"></p-checkbox>
+            <label for="ny">Status</label>
+            
+          
+         
+    
+         
+    
+    </div>
+            
+
+    <ng-template pTemplate="footer">   <p-button label="Save" icon="pi pi-check" (click)="SaveLicense()"></p-button>
+    
+    </ng-template>
+          
+</p-panel>
+
+</div>
+       
+
+     
+
+

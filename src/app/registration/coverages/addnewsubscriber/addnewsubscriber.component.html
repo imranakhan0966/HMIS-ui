@@ -1,0 +1,652 @@
+<div class="card mt-7">
+
+
+    <p-panel>
+  
+      <ng-template pTemplate="header"> <span class="text-primary font-semibold text-xl">Coverage</span></ng-template>
+  
+  
+      <app-paitentdemographics (mrSearchEvent)="searchMrEvent($event)"></app-paitentdemographics>
+  
+  
+  
+  </p-panel> 
+      <p-panel>
+          <ng-template pTemplate="header"> <span class="text-primary font-semibold text-xl">Subscriber Info</span></ng-template>
+  
+  
+  
+      
+  <div class="container">
+  
+      <div class="row">
+  
+          <div class="col-3">
+              <p-dropdown [options]="type" [(ngModel)]="policy.CompanyOrIndividual" optionLabel="label" optionValue="value"
+              placeholder="Type" [required]="true">
+          </p-dropdown>
+  
+          </div>
+          <div class="col-3">
+  
+              <p-dropdown [options]="titles" [(ngModel)]="policy.Suffix" optionLabel="name"  optionValue="name"
+              placeholder="Title" [required]="true">
+          </p-dropdown>
+          </div>
+          <div class="col-3">
+  
+              <span class="p-float-label">
+                  <input pInputText id="firstname" [(ngModel)]="policy.FirstName"  />
+                  <label htmlFor="firstname">First Name</label>
+              </span>
+  
+  
+              
+          </div>
+          <div class="col-3">
+  
+  
+              
+              <span class="p-float-label">
+                  <input pInputText id="middlename" [(ngModel)]="policy.MiddleName" />
+                  <label htmlFor="middlename">Middle Name</label>
+              </span>
+  
+  
+            
+              
+          </div>
+      </div>
+  
+  
+      <div class="row mt-10" >
+          <div class="col-3">
+  
+  
+                   
+              <span class="p-float-label">
+                  <input pInputText id="lastname" [(ngModel)]="policy.LastName" />
+                  <label htmlFor="lastname">Last Name</label>
+              </span>
+  
+  
+  
+            
+              
+          </div>
+          <div class="col-3">
+  
+  
+              <span class="p-float-label">
+                  <input pInputText id="cellphone" [(ngModel)]="policy.InsuredPhone" />
+                  <label htmlFor="cellphone">Cell Phone</label>
+              </span>
+  
+  
+            
+              
+          </div>
+          <div class="col-3">
+              <p-calendar [(ngModel)]="policy.BirthDate" aria-label="Date of Birth" placeholder="Date of Birth" 
+              [showIcon]="true"></p-calendar>
+              
+          </div>
+          <div class="col-3">
+  
+              <span class="p-float-label">
+                  <textarea rows="1" id="address"  pInputTextarea [(ngModel)]="policy.Address1" 
+                  placeholder=" Address"></textarea>
+  
+                  <label htmlFor="address">Address</label>
+              </span>
+  
+              
+          </div>
+        
+  
+      </div>
+  
+  
+      <div class="row">
+  
+  
+  
+          <div class="col-3">
+              <p-dropdown [options]="Country" [(ngModel)]="policy.CountryId" optionLabel="name"
+              placeholder="Country" optionValue="code" [required]="true">
+          </p-dropdown>
+          </div>
+          <div class="col-3">
+              <p-dropdown [options]="states" [(ngModel)]="policy.StateId" placeholder="State"
+              optionLabel="name" optionValue="code" ></p-dropdown>
+          </div>
+          <div class="col-3">
+              <p-dropdown [options]="city" [(ngModel)]="policy.CityId" placeholder="Cities"
+              optionLabel="name"  optionValue="code" [required]="true"></p-dropdown>
+          </div>
+  
+          
+          <div class="col-3">
+  
+             
+              <p-dropdown [options]="genders" [(ngModel)]="policy.Sex" optionLabel="name"   optionValue="name"
+              placeholder="Gender" [required]="true">
+          </p-dropdown>
+  
+          
+              
+          </div>
+        
+      </div>
+  
+  
+      <div class="row">
+  
+          <div class="col-3">
+              <p-dropdown [options]="BLPayer" [(ngModel)]="policy.CarrierId" optionLabel="name" optionValue="code"
+              placeholder="Insurance Carrier" [required]="true">
+           </p-dropdown>
+            
+          </div>
+         
+  
+          <div class="col-3">
+              <p-dropdown [options]="BLPayerPlan" [(ngModel)]="policy.selectedBLPayerPlan" placeholder="Policy Name"
+              optionLabel="name" [required]="true"></p-dropdown>
+          </div>
+  
+  
+          <div class="col-3">
+  
+              <p-dropdown [options]="BLPayerPackage" [(ngModel)]="policy.selectedBLPayerPackage" optionLabel="name"  optionValue="code"
+              placeholder="Package Name" [required]="true">
+            </p-dropdown>
+           
+          </div>
+  
+  
+          <div class="col-3">
+  
+              <span class="p-float-label">
+                  <textarea rows="1" id="postalcode"  pInputTextarea [(ngModel)]="policy.ZipCode" 
+                  placeholder=" postalcode"></textarea>
+  
+                  <label htmlFor="postalcode">ZipCode</label>
+              </span>
+  
+  
+            
+          </div>
+          
+  
+       
+        
+      </div>
+  
+  
+      <div class="row">
+  
+         
+  
+  
+  
+       
+  
+          <div class="col-4">
+  
+  
+              <div class="card mt-2">
+                  <b>
+                      <a class="nav-item nav-link active mt-2" id="nav-profile-tab" data-toggle="tab" data-toggle="tab"
+                          role="tab" style="color:rgb(8, 8, 167); margin-left: 20px;" aria-controls="nav-profile"
+                          aria-selected="false">Copay Flat Rate (%)
+                      </a></b>
+                  <div class="row mt-2  mb-2 ml-2 mr-2">
+                   
+  
+                      <div class="col-sm-3">
+                          <input pInputText type="number" id="op" [(ngModel)]="policy.OpCopay" 
+                          placeholder="OP" style="width:100px;"/>
+                      </div>
+                      <div class="col-sm-3">
+                          <input pInputText type="number" id="ip" [(ngModel)]="policy.Deductibles" 
+                          placeholder="IP" style="width:100px ;"/>
+                      </div>
+               
+  
+                   
+                  </div>
+              </div>
+  
+  
+  
+              <div class="card mt-2">
+                  <b>
+                      <a class="nav-item nav-link active mt-2" id="nav-profile-tab" data-toggle="tab" data-toggle="tab"
+                          role="tab" style="color:rgb(8, 8, 167); margin-left: 20px;" aria-controls="nav-profile"
+                          aria-selected="false">Deductable (Amount) 
+                      </a></b>
+                  <div class="row mt-2  mb-2 ml-2 mr-2">
+                   
+  
+                      <div class="col-sm-3">
+                          <input pInputText type="number" id="pc" [(ngModel)]="policy.Copay" 
+                   placeholder="PC" style="width:100px;" />
+                      </div>
+                      <div class="col-sm-3">
+                          <input pInputText type="number" id="dn" [(ngModel)]="policy.DNDeductible" 
+                   placeholder="DN" style="width:100px;"/>
+                      </div>
+               
+  
+                   
+                  </div>
+              </div>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+         
+             
+          </div>
+  
+  
+       
+  
+  
+         
+  
+  
+  
+  
+        
+  
+  
+  
+      </div>
+  
+  
+      <div class="row">
+  
+  
+  
+          <div class="col-4">
+  
+              <div >
+              <span class="p-float-label">
+                  <textarea rows="1" id="memId"  pInputTextarea [(ngModel)]="policy.InsuredIdNo" 
+                  placeholder=" memId"></textarea>
+  
+                  <label htmlFor="memId">Member Id / Emp Id</label>
+              </span>
+  
+          </div>
+          </div>
+  
+  
+  
+         
+         
+      </div>
+  
+      <div class="row">
+  
+          <div class="col-3">
+              <label class="form-check-label" for="flexCheckChecked">
+                  Active
+                </label>
+                <input class="form-check-input" type="checkbox" value="" [(ngModel)]="policy.Inactive" id="flexCheckChecked" checked>
+              
+            
+          </div>
+  
+      </div>
+  
+    
+  </div>
+  
+  <!-- <div class="card mt-7">
+      
+      <p-table >
+      <ng-template pTemplate="header">
+          <tr>
+  
+  
+  
+  
+  
+  
+              <th style="width:9%">
+                  <div class="flex align-items-center">
+                      Effective Date <p-sortIcon field="EffectiveDate"></p-sortIcon>
+                      <p-columnFilter type="text" field="terminationDate" display="menu"></p-columnFilter>
+                  </div>
+              </th>
+  
+  
+  
+              <th style="width:12%">
+                  <div class="flex align-items-center">
+                      Termination Date <p-sortIcon field="EffectiveDate"></p-sortIcon>
+                      <p-columnFilter type="date" field="terminationDate" display="menu"></p-columnFilter>
+                  </div>
+              </th>
+  
+              <th style="width:7%">
+                  <div class="flex align-items-center">
+                     Policy No.
+                      <p-columnFilter type="text" field="payerName" display="menu"></p-columnFilter>
+                  </div>
+              </th>
+  
+  
+        
+  
+  
+  
+              <th style="width:7%">
+                  <div class="flex align-items-center">
+                    No. of Visits
+                      <p-columnFilter type="text" field="memberId" display="menu"></p-columnFilter>
+                  </div>
+              </th>
+  
+  
+  
+                   <!-- style="min-width:10rem" -->
+                   <!-- <th style="width:5%">
+                      <div class="flex align-items-center">
+                        Amount 
+                          <p-columnFilter type="text" field="relationCode" display="menu"></p-columnFilter>
+                      </div>
+                  </th>
+  
+                  <th style="width:5%">
+                      <div class="flex align-items-center">
+                        Status 
+                          <p-columnFilter type="text" field="relationCode" display="menu"></p-columnFilter>
+                      </div>
+                  </th>
+  </tr>
+  </ng-template>
+  
+  
+  
+  
+  
+      <ng-template pTemplate="body" let-rowData let-rowIndex="rowIndex">
+          <tr *ngFor="let row of Subscriber.regInsurancePolicy; let rowIndex = index">
+          <td>
+            <p-calendar [(ngModel)]="row.effectivedate"  name="effectivedate-{{rowIndex}}" placeholder="EffectiveDate" 
+            [showIcon]="true"></p-calendar>
+          </td>
+          <td>
+              <input type="text" [(ngModel)]="row.terminationDate" name="terminationDate-{{rowIndex}}">
+            </td>
+          <td>
+            <input type="text" [(ngModel)]="row.InsuredIdNo" name="InsuredIdNo-{{rowIndex}}">
+          </td>
+          <td>
+            <input type="text" [(ngModel)]="row.noOfVisits" name="noOfVisits-{{rowIndex}}">
+          </td>
+          <td>
+              <input type="text" [(ngModel)]="row.amount" name="amount-{{rowIndex}}">
+            </td>
+  
+            <td>
+              <input type="text" [(ngModel)]="row.status" name="status-{{rowIndex}}">
+            </td>
+          <!-- Add more editable cells as needed -->
+        <!-- </tr>
+      </ng-template>
+    </p-table>
+  
+    </div> --> 
+    
+  
+  
+    <!-- <div class="card">
+      <h3 class="ml-4 mb-3">Policy</h3>
+      <p-table [value]="policy.regInsurancePolicy" dataKey="groupNo" [tableStyle]="{'min-width': '50rem'}">
+        <ng-template pTemplate="header">
+          <tr>
+            <th style="width: 25%">Effective Date</th>
+            <th style="width: 25%">Termination Date</th>
+            <th style="width: 25%">Policy No</th>
+            <th style="width: 25%">No of Visits</th>
+            <th style="width: 25%">Amount</th>
+            <th style="width: 25%">Status</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-policy>
+          <tr>
+            <td pEditableColumn>
+              <p-cellEditor>
+                <ng-template pTemplate="input">
+                  <input pInputText type="text" [(ngModel)]="policy.effectiveDate">
+                </ng-template>
+                <ng-template pTemplate="output">
+                  {{policy.effectiveDate}}
+                </ng-template>
+              </p-cellEditor>
+            </td>
+            <td pEditableColumn>
+              <p-cellEditor>
+                <ng-template pTemplate="input">
+                  <input pInputText type="text" [(ngModel)]="policy.terminationDate">
+                </ng-template>
+                <ng-template pTemplate="output">
+                  {{policy.terminationDate}}
+                </ng-template>
+              </p-cellEditor>
+            </td>
+            <td pEditableColumn>
+              <p-cellEditor>
+                <ng-template pTemplate="input">
+                  <input pInputText type="text" [(ngModel)]="policy.groupNo">
+                </ng-template>
+                <ng-template pTemplate="output">
+                  {{policy.groupNo}}
+                </ng-template>
+              </p-cellEditor>
+            </td>
+            <td pEditableColumn>
+              <p-cellEditor>
+                <ng-template pTemplate="input">
+                  <input pInputText type="number" [(ngModel)]="policy.noOfVisits">
+                </ng-template>
+                <ng-template pTemplate="output">
+                  {{policy.noOfVisits}}
+                </ng-template>
+              </p-cellEditor>
+            </td>
+            <td pEditableColumn>
+              <p-cellEditor>
+                <ng-template pTemplate="input">
+                  <input pInputText type="number" [(ngModel)]="policy.amount">
+                </ng-template>
+                <ng-template pTemplate="output">
+                  {{policy.amount}}
+                </ng-template>
+              </p-cellEditor>
+            </td>
+  <td pEditableColumn>
+    <p-cellEditor>
+      <ng-template pTemplate="input">
+        <p-dropdown [options]="[{label: 'Active', value: true}, {label: 'Inactive', value: false}]"
+                    [(ngModel)]="policy.status"></p-dropdown>
+      </ng-template>
+      <ng-template pTemplate="output">
+        {{ policy.status ? 'Active' : 'Inactive' }}
+      </ng-template>
+    </p-cellEditor>
+  </td>
+  
+          </tr>
+        </ng-template>
+      </p-table>
+    </div> -->
+    
+  
+  
+  
+  
+  
+  
+    <div class="card">
+      <!-- <h3 class="ml-4 mb-3">Policy</h3> -->
+      <p-tabView >
+        <p-tabPanel header="Policy" >
+          <p-table [value]="policy.regInsurancePolicy" dataKey="groupNo" [tableStyle]="{'min-width': '50rem'}">
+            <ng-template pTemplate="header">
+              <tr >
+                <th style="width: 25%">Effective Date</th>
+                <th style="width: 25%">Termination Date</th>
+                <th style="width: 25%">Policy No</th>
+                <th style="width: 25%">No of Visits</th>
+                <th style="width: 25%">Amount</th>
+                <th style="width: 25%">Status</th>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-policy>
+              <tr>
+                <td pEditableColumn>
+                  <p-cellEditor>
+                    <ng-template pTemplate="input">
+                      <input pInputText type="datetime" [(ngModel)]="policy.effectiveDate">
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                      {{policy.effectiveDate}}
+                    </ng-template>
+                  </p-cellEditor>
+                </td>
+                <td pEditableColumn>
+                  <p-cellEditor>
+                    <ng-template pTemplate="input">
+                      <input pInputText type="datetime" [(ngModel)]="policy.terminationDate">
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                      {{policy.terminationDate}}
+                    </ng-template>
+                  </p-cellEditor>
+                </td>
+                <td pEditableColumn>
+                  <p-cellEditor>
+                    <ng-template pTemplate="input">
+                      <input pInputText type="text" [(ngModel)]="policy.groupNo">
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                      {{policy.groupNo}}
+                    </ng-template>
+                  </p-cellEditor>
+                </td>
+                <td pEditableColumn>
+                  <p-cellEditor>
+                    <ng-template pTemplate="input">
+                      <input pInputText type="number" [(ngModel)]="policy.noOfVisits">
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                      {{policy.noOfVisits}}
+                    </ng-template>
+                  </p-cellEditor>
+                </td>
+                <td pEditableColumn>
+                  <p-cellEditor>
+                    <ng-template pTemplate="input">
+                      <input pInputText type="number" [(ngModel)]="policy.amount">
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                      {{policy.amount}}
+                    </ng-template>
+                  </p-cellEditor>
+                </td>
+                <td pEditableColumn>
+                  <p-cellEditor>
+                    <ng-template pTemplate="input">
+                      <p-dropdown appendTo="body" [options]="status"
+                      [(ngModel)]="policy.status"  optionLabel="label" optionValue="value" placeholder="Select Status"></p-dropdown>
+            
+                                  
+                    </ng-template>
+            
+                  </p-cellEditor>
+                </td>
+              </tr>
+            </ng-template>
+          </p-table>
+        </p-tabPanel>
+        <p-tabPanel header="Copay">
+          <p-table [value]="policy.regDeduct" dataKey="subscriberId" [tableStyle]="{'min-width': '50rem'}" >
+            <ng-template pTemplate="header">
+              <tr>
+                <th style="width: 50%">Type of Service</th>
+                <th style="width: 25%">Copay (%)</th>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-deduct>
+              <tr>
+                <td pEditableColumn>
+                  <p-cellEditor>
+                    <ng-template pTemplate="input">
+                      <input pInputText type="text" [(ngModel)]="deduct.subscriberId">
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                      {{ deduct.subscriberId }}
+                    </ng-template>
+                  </p-cellEditor>
+                </td>
+                <td pEditableColumn>
+                  <p-cellEditor>
+                    <ng-template pTemplate="input">
+                      <input pInputText type="number" [(ngModel)]="deduct.serviceType">
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                      {{ deduct.serviceType }}
+                    </ng-template>
+                  </p-cellEditor>
+                </td>
+              </tr>
+            </ng-template>
+          </p-table>
+        </p-tabPanel>
+      </p-tabView>
+    </div>
+    
+  
+  
+  <ng-template pTemplate="footer">
+         
+      
+      <p-button label="Save" icon="pi pi-check" (click)="insertsubscriber()" styleClass="p-button-success"></p-button>
+  
+      <p-button label="Add Card" (click)="openModal()" icon="pi pi-upload"  styleClass="p-button-info" style="float: right;"></p-button>
+
+  
+  
+  
+  </ng-template>
+  
+      
+    
+      </p-panel>
+  
+  </div> 
+
+  <p-dialog header="Filter" [(visible)]="isModalOpen" [breakpoints]="{ '960px': '75vw' }" [style]="{ width: '50vw' }" [draggable]="false"  (onHide)="hideModal()"  [maximizable]="true">
+    <div class="container">
+    <p-fileUpload mode="basic" style="float:left;" chooseLabel="Select" (onSelect)="onFileSelected($event)"></p-fileUpload>
+      <button pButton type="button" style="float:left; margin-left: 10px;" (click)="uploadImage()">Read Image</button>
+      <button style="float:right;" pButton type="button" (click)="hideModal()" label="Close"></button>
+      <br>
+      
+      <br>
+      <p-image *ngIf="imagePreview" [src]="imagePreview" class="img-thumbnail" style="position:inherit !important;" aria-placeholder="img-thumbnail"></p-image>
+      </div>
+      
+  </p-dialog>

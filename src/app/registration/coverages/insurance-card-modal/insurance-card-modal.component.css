@@ -1,0 +1,9 @@
+.custom-dialog {
+    width: 10 !important; /* Adjust the width as per your requirement */
+    height: 10 !important; /* Adjust the height as per your requirement */
+  }
+  .container {
+    margin-top: 20px;
+    width: 1000px !important;
+    height: 500px !important;
+  }

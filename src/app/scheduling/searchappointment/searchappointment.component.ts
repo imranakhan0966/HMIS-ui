@@ -1,0 +1,326 @@
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { MessageService } from 'primeng/api';
+import { UsersService } from 'src/app/services/control-panel/users.service';
+import { SchedulingService } from 'src/app/services/scheduling/scheduling.service';
+
+@Component({
+  selector: 'app-searchappointment',
+  templateUrl: './searchappointment.component.html',
+  styleUrls: ['./searchappointment.component.css']
+})
+export class SearchappointmentComponent implements OnInit {
+
+filter:boolean;
+  
+  rangeDates: Date[];
+
+
+  facilities : any[];
+  selectedFacility:any;
+
+
+
+  
+speciality: any[];
+
+selectedSpeciality: any;
+
+
+
+provider: any[];
+
+selectedProviders: any;
+
+
+
+sites: any[];
+
+selectedSites: any;
+
+
+
+locations: any[];
+
+selectedLocations: any;
+
+
+
+
+
+
+appointmentType:any[];
+selectedappointmentType:any;
+
+
+cacheItems :string[]= ['RegLocations','RegLocationTypes','Provider','providerspecialty','RegFacility'];
+
+  constructor(private router: Router,private userService:UsersService,private messageService: MessageService,private schedulingService:SchedulingService) { }
+
+  ngOnInit(): void {
+
+    
+    this.appointmentType = [
+      { name: 'All Appointments', code: '0' },
+      { name: 'Schedule Appointments', code: '1' },
+      { name: 'Rescheduled Appointments', code: '2' },
+      { name: 'Cancelled Appointments', code: '3' },
+      { name: 'No Show Appointments', code: '4' }
+
+   
+  ];
+  this.FillCache();
+  }
+
+
+  
+
+
+ClickFilter(){
+
+  this.filter=true;
+}
+
+
+
+
+FillCache(){
+  this.userService.getCacheItem({entities:this.cacheItems}).then(response => {
+    if(response.cache!=null){
+
+       
+
+        this.FillDropDown(response);
+    
+    }}
+    ).catch(error =>           this.messageService.add({ severity: 'error', summary: 'Error', detail: error.message }));;
+
+
+  }
+
+
+FillDropDown(response:any){
+debugger
+ 
+let jParse=  JSON.parse(JSON.stringify(response)).cache;
+let location  = JSON.parse(jParse).RegLocations;
+let sites  = JSON.parse(jParse).RegLocationTypes;
+let speciality  = JSON.parse(jParse).providerspecialty;
+
+let provider  = JSON.parse(jParse).Provider;
+
+let regFacility  = JSON.parse(jParse).RegFacility;
+
+
+
+
+  
+if(provider){
+
+
+  provider = provider.map((item: { EmployeeId : any; FullName: any; }) => {
+      return {
+        name: item.FullName,
+        code: item.EmployeeId
+      };
+    });
+  
+      this.provider = provider;
+  }
+
+ 
+
+
+if(location){
+
+
+  location = location.map((item: { LocationId : any; Name: any; }) => {
+      return {
+        name: item.Name,
+        code: item.LocationId
+      };
+    });
+  
+      this.locations = location;
+  }
+
+
+
+  if(sites){
+
+
+    sites = sites.map((item: { TypeId : any; Name: any; }) => {
+        return {
+          name: item.Name,
+          code: item.TypeId
+        };
+      });
+    
+        this.sites = sites;
+    }
+
+
+
+    if(speciality){
+
+
+      speciality = speciality.map((item: { SpecialtyID : any; SpecialtyName: any; }) => {
+          return {
+            name: item.SpecialtyName,
+            code: item.SpecialtyID
+          };
+        });
+      
+          this.speciality = speciality;
+      }
+
+
+
+this.userService.getEmployeeFacilityFromCache().then(response => {
+  if(response.cache!=null){
+    let jParse=  JSON.parse(JSON.stringify(response)).cache;
+
+    let  hremployeefacility =JSON.parse(jParse); 
+
+
+
+ if(hremployeefacility){
+
+ 
+  let facilityIds = hremployeefacility.map((item: { FacilityID : any}) => {
+    return item.FacilityID;
+      
+    
+    
+  });
+
+  //in RegFacility where facilityid match in RegFacility
+
+
+if(facilityIds){
+
+
+if(regFacility){
+
+
+  regFacility = regFacility.map((item: { Id : any; Name: any; }) => {
+      return {
+        name: item.Name,
+        code: item.Id
+      };
+    });
+
+
+if(regFacility){
+
+let facilityonemployee = regFacility.filter((obj:any) => {
+  
+  return facilityIds.includes(obj.code);
+});
+
+
+this.facilities = facilityonemployee;
+
+}
+
+  
+  }
+
+
+}
+
+
+
+
+
+
+
+ }
+
+  
+  }}
+  ).catch(error =>           this.messageService.add({ severity: 'error', summary: 'Error', detail: error.message }));
+
+
+
+
+
+
+
+
+
+
+}
+
+
+
+
+SubmitFilter(){
+  this.filter=false;
+  debugger
+  let fa = this.selectedFacility?.code;
+  let sp = this.selectedSpeciality?.code;
+  let pr = this.selectedProviders?.code;
+  let site = this.selectedSites?.code;
+  
+  let loc = this.selectedLocations?.code;
+  
+  
+  
+  let startMonth = this.rangeDates?  `${(this.rangeDates[0].getMonth()+1).toString().length<2? '0'+ (this.rangeDates[0].getMonth()+1) :this.rangeDates[0].getMonth()+1  }`:0;
+  
+  let endMonth =  this.rangeDates? `${(this.rangeDates[1].getMonth()+1).toString().length<2? '0'+ (this.rangeDates[1].getMonth()+1) :this.rangeDates[1].getMonth()+1  }`:0;
+  
+  
+  
+  let from = this.rangeDates ? (`${this.rangeDates[0].getUTCFullYear()}-${startMonth}-${this.rangeDates[0].getDate()}`): '2020-01-01';
+  
+  let to =this.rangeDates ? (`${this.rangeDates[1].getUTCFullYear()}-${endMonth}-${this.rangeDates[1].getDate()}`): '2021-01-01';
+  
+  
+  
+  
+  this.SearchAppointment(from,to,pr,loc,sp,site,fa);
+  
+  
+  }
+
+
+
+  
+
+SearchAppointment(FromDate:string,ToDate:string,ProviderID?:number,LocationID?:number,SpecialityID?:number,SiteID?:number,FacilityID?:number,Page?:number,Size?:number){
+  debugger
+  this.schedulingService.searchAppointment(FromDate,ToDate,ProviderID,LocationID,SpecialityID,SiteID,FacilityID,Page,Size).then((appointment) => {
+    console.log("SearchAppointments");
+
+    console.log(appointment);
+
+
+    if(appointment.table1){
+
+      let appointments = [];
+
+for(let i=0 ;i<appointment.table1.length;i++){
+  let title = appointment.table1[i].appType;
+    let date = appointment.table1[i].appointment_Date;
+appointments.push({date:date,title:title});
+}
+
+  
+
+
+    
+    }
+
+
+    
+}).catch(error =>           this.messageService.add({ severity: 'error', summary: 'Error', detail: error.message }));
+
+
+}
+ 
+
+
+
+}

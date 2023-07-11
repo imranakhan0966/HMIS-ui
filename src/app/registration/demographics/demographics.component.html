@@ -1,0 +1,425 @@
+
+<div class="card">
+    <br/>
+    <br/>
+    
+    <p-panel>
+        <ng-template pTemplate="header"> <span class="text-primary font-semibold text-xl">Demographics</span></ng-template>
+
+
+
+        <!-- <p-divider align="center">
+        </p-divider>
+
+    
+
+     
+     <app-family></app-family> <app-history></app-history> -->
+
+        
+    
+        <p-divider align="right">
+        </p-divider>
+       
+        
+
+
+        <div class="container">
+
+            <div class="row">
+
+                <div class="col-05">
+
+                        <img class="fileupload" src="https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png" alt="" width="100px" height="100px;" />
+
+                        <input type="file" class="file-input"
+                        (change)="onFileSelected($event)" #fileUpload>
+                        <div class="file-upload">
+
+                            {{fileName || "No file uploaded yet."}}
+                         
+                             <button mat-mini-fab color="primary" class="upload-btn"
+                               (click)="fileUpload.click()">
+                                 <i class="pi pi-upload" style="font-size: 1rem"></i>
+
+                                 
+
+                             </button>
+                         </div>
+                </div>
+            </div>
+
+
+            <div class="row">
+              <div class="col-2">
+
+                <input pInputText  disabled placeholder="EMPI" />
+
+
+              </div>
+
+
+              <div class="col-2">
+
+                <input pInputText  disabled placeholder="MrNo" />
+
+               
+  
+              </div>
+
+
+              <div class="col-2">
+
+                <input pInputText  placeholder="First Name" value="{{Detail?.fName}}" />
+             
+              </div>
+             
+<div class="col-2">
+
+    <input pInputText  placeholder="Middle Name"  value="{{Detail?.mName}}"/>
+</div>
+
+
+<div class="col-2">
+    <input pInputText  placeholder="Last Name" value="{{Detail?.fName}}" />
+
+</div>
+
+
+           
+            </div>
+
+
+            <div class="row">
+
+
+              
+
+
+                <div class="col-2">
+                    <p-dropdown [options]="gender" [(ngModel)]="selectedGender" optionLabel="name" placeholder="Gender" [required]="true"  ></p-dropdown>
+                
+                </div>
+
+
+
+                <div class="col-2">
+                    <p-dropdown [options]="maritalstatus" [(ngModel)]="selectedmaritalstatus" optionLabel="name" placeholder="Marital Status" [required]="true" ></p-dropdown>
+                
+                </div>
+
+
+
+                <div class="col-2">
+                    <p-dropdown [options]="bloodgroup" [(ngModel)]="selectedBG" optionLabel="name" placeholder="Blood Group" [required]="true" ></p-dropdown>
+
+                
+                </div>
+
+
+
+                <div class="col-2">
+                    <p-calendar [(ngModel)]="dob" placeholder="Date of Birth"></p-calendar>
+
+                    </div>
+
+
+                    <div class="col-2">
+                        <input pInputText  placeholder="Age"  />
+    
+                    </div>
+
+
+              
+             
+              </div> 
+        
+
+              <div class="row">
+
+
+              
+
+             
+
+
+
+
+                <div class="col-2">
+                    <input pInputText placeholder="Labor Card No" />
+                
+                </div>
+                
+                
+                
+                <div class="col-2">
+                    <input pInputText placeholder="Emirates ID"/>
+                
+                </div>
+
+                <div class="col-2">
+
+
+
+
+
+
+                    <p-dropdown [options]="religion" [(ngModel)]="selectedreligion" optionLabel="name" placeholder="Religion" [required]="true" ></p-dropdown>
+
+
+
+
+
+                </div>
+
+
+
+
+                
+<div class="col-2">
+    <p-dropdown [options]="ethinic" [(ngModel)]="selectedethinic" optionLabel="name" placeholder="Ethnicity" [required]="true" ></p-dropdown>
+
+</div>
+
+
+
+<div class="col-2">
+    <p-dropdown [options]="nationality" [(ngModel)]="selectednationality" optionLabel="name" placeholder="Nationality" [required]="true"  ></p-dropdown>
+
+</div>
+
+              
+              
+              </div> 
+        
+
+              <div class="row">
+
+
+              
+
+
+
+
+
+<div class="col-2">
+    <p-dropdown [options]="language" [(ngModel)]="selectedlanguge" optionLabel="name" placeholder="Language" [required]="true"  ></p-dropdown>
+
+</div>
+
+
+
+
+
+
+<div class="col-2">
+    <input pInputText placeholder="Passport No"/>
+
+</div>
+
+
+
+<div class="col-2">
+    <input pInputText placeholder="Driving License No"/>
+
+</div>
+
+
+
+<div class="col-2">
+    <input pInputText placeholder="Referred Channel"/>
+
+</div>
+
+
+<div class="col-2">
+    <!-- <input pInputText placeholder="Referred By"/> -->
+
+    <p-dropdown [options]="referred" [(ngModel)]="selectedReferredBy" optionLabel="name" placeholder="Referred By" [required]="true"  ></p-dropdown>
+ 
+
+
+
+</div>
+
+
+
+               
+              </div> 
+        
+
+
+             
+        
+
+
+              <div class="row">
+
+
+
+
+
+
+                <div class="col-2">
+                    <input pInputText placeholder="Unified No"/>
+
+                </div>
+
+
+                <div class="col-2">
+
+                    <input pInputText placeholder="Emirates ID Type" />
+
+                </div>
+
+
+                <div class="col-2">
+
+                    <p-checkbox [(ngModel)]="isVIP" [binary]="true" inputId="binary" placeholder="VIP Patient"></p-checkbox>
+
+                    <label for="ny"> VIP</label>
+
+                </div>
+              
+              </div> 
+        
+
+
+              <div class="row">
+
+
+                <p-tabView styleClass="tabview-custom">
+               
+
+
+                    <p-tabPanel header="Contact">
+                        <ng-template pTemplate="header">
+                            <i class="pi pi-calendar"></i>
+                            <span>Contact</span>
+                        </ng-template>
+                        <div class="row">
+                            <div class="col-3">
+                                <p-dropdown [options]="title" [(ngModel)]="selectedTitle" optionLabel="name" placeholder="Title"  [required]="true" ></p-dropdown>
+                            </div>
+                            <div class="col-3">
+                                <input pInputText [(ngModel)]="Demographic.parentname" placeholder="Name" [required]="true"  />
+                            </div>
+                            <div class="col-3">
+                                <input pInputText [(ngModel)]="Demographic.Address" placeholder="Address"  [required]="true" />
+                            </div>
+                            <div class="col-3">
+                                <input pInputText [(ngModel)]="Demographic.Phone" placeholder="Home Phone"  [required]="true" />
+                            </div>
+                          
+                          
+                        </div>
+
+                        <div class="row">
+                            <div class="col-3">
+                                <input pInputText [(ngModel)]="Demographic.Fax" placeholder="Fax No" [required]="true"  />
+                            </div>
+                            <div class="col-3">
+                                <input pInputText [(ngModel)]="Demographic.Email" placeholder="Email" [required]="true"  />
+                            </div>
+                        </div>
+                    </p-tabPanel>
+
+
+
+                    <p-tabPanel header="Emergency">
+                        <ng-template pTemplate="header">
+                            <i class="pi pi-user"></i>
+                            <span>Emergency</span>
+                        </ng-template>
+                        <div class="row">
+                            <div class="col-3">
+                                <input pInputText [(ngModel)]="Demographic.EmergencyName" placeholder="Name" [required]="true" />
+                            </div>
+                            <div class="col-3">
+                                <input pInputText [(ngModel)]="Demographic.EmergencyRelationship" placeholder="Relationship" [required]="true"  />
+                            </div>
+                            <div class="col-3">
+                                <input pInputText [(ngModel)]="Demographic.EmergencyPhone" placeholder="Phone No"  [required]="true" />
+                            </div>
+                            <div class="col-3">
+                                <input pInputText [(ngModel)]="Demographic.EmergencyAddress" placeholder="Address" [required]="true" />
+                                <input pInputText [(ngModel)]="Demographic.EmergencyAddress" placeholder="Address" [required]="true" />
+                            </div>
+                        </div>
+                    </p-tabPanel>
+                    <p-tabPanel header="Relatives">
+                        <ng-template pTemplate="header">
+                            <i class="pi pi-search"></i>
+                            <span>Relatives</span>
+                        </ng-template>
+                        <div class="row">
+                            <div class="col-3">
+                                <input pInputText [(ngModel)]="Demographic.RelativeName" placeholder="Relative's Name" [required]="true"  />
+                            </div>
+                            <div class="col-3">
+                                <input pInputText [(ngModel)]="Demographic.RelativesRelationship" placeholder="Relationship" [required]="true" />
+                            </div>
+                            <div class="col-3">
+                                <input pInputText [(ngModel)]="Demographic.RelativesPhone" placeholder="Phone No" [required]="true" />
+                            </div>
+                            <div class="col-3">
+                                <input pInputText [(ngModel)]="Demographic.RelativesAddress" placeholder="Address" [required]="true" />
+                            </div>
+                        </div>
+                    </p-tabPanel>
+
+
+                    <p-tabPanel header="Family Members">
+                        <ng-template pTemplate="header">
+                            <i class="pi pi-cog"></i>
+                            <span>Family Members</span>
+                        </ng-template>
+                        <div class="row">
+                            <div class="col-3">
+                                <input pInputText [(ngModel)]="Demographic.FamilyPhone" placeholder="Father's Phone No" [required]="true" />
+                            </div>
+                            <div class="col-3">
+                                <input pInputText [(ngModel)]="Demographic.FamilyEmail" placeholder="Father's Email Address" [required]="true" />
+                            </div>
+                            <div class="col-3">
+                                <input pInputText [(ngModel)]="Demographic.FamilyMotherName" placeholder="Mother's Name" [required]="true"  />
+                            </div>
+                            <div class="col-3">
+                                <input pInputText [(ngModel)]="Demographic.FamilyMotherPhone" placeholder="Mother's Phone No" [required]="true"  />
+                            </div>
+                          
+                        </div>
+
+                        <div class="row">
+                            <div class="col-3">
+                                <input pInputText [(ngModel)]="Demographic.FamilyMotherEmail" placeholder="Mother's Email Address" [required]="true"  />
+                            </div>
+                        </div>
+                    </p-tabPanel>
+                </p-tabView>
+                
+
+              </div>
+          
+          </div>
+
+
+    
+
+
+  
+        
+        
+        <ng-template pTemplate="footer">
+           
+            <p-button icon="pi pi-user-plus"  label="Create" (click)="submit()" styleClass="p-button-success"></p-button>
+
+      
+        </ng-template>
+        
+        
+    
+    </p-panel>
+    
+    
+    </div>

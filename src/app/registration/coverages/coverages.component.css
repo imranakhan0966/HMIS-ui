@@ -1,0 +1,13 @@
+.header-container {
+  display: flex;
+  align-items: center;
+}
+
+.label-container {
+  flex-grow: 1;
+}
+
+.icon-container {
+  margin-left: auto;
+}
+

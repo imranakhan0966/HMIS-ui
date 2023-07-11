@@ -1,0 +1,54 @@
+
+
+
+    <div class="card">
+        <br/>
+        <br/>
+   
+        <p-panel>
+            <ng-template pTemplate="header"> <span class="text-primary font-semibold text-xl">Assign Roles</span></ng-template>
+
+         
+
+            <div class="grid">
+
+                <div class="col-2">
+
+        
+                        <p-multiSelect [options]="roles" [(ngModel)]="selectedRoles" defaultLabel="Select a Role" optionLabel="name" display="chip">
+
+
+                        </p-multiSelect>
+
+                  
+
+                </div>
+
+
+                <div class="col-6">
+                    <div class="flex card-container">
+                        <div >
+                  
+        
+                            <!-- <div style="margin-bottom: 1rem">
+                                <button pButton type="button" label="Expand all" (click)="expandAll()" style="margin-right: .5rem"></button>
+                                <button pButton type="button" label="Collapse all" (click)="collapseAll()"></button>
+                            </div> -->
+                            <p-tree [value]="permissions" style="width: 100%" selectionMode="checkbox" [(selection)]="selectedPermissions" (onNodeSelect)="nodeSelect($event)" (onNodeUnselect)="nodeUnselect($event)"></p-tree>
+                            
+                        </div>
+                    </div>
+
+                </div>
+              
+               
+            </div>
+             
+
+          
+            
+        </p-panel>
+
+
+    
+        </div>

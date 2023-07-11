@@ -1,0 +1,530 @@
+
+
+
+<div class="card">
+<br/>
+<br/>
+
+<p-panel>
+    <ng-template pTemplate="header"> <span class="text-primary font-semibold text-xl">Create Users</span></ng-template>
+
+    <p-tabView>
+        <p-tabPanel header="User Information">
+            <div class="flex align-items-center gap-1">
+    
+    
+    
+                <p-checkbox value="Employee" [(ngModel)]="requestObj.IsEmployee" [binary]="true" inputId="binary"></p-checkbox>
+                <label for="ny">Employee</label>
+        
+                <p-checkbox  value="Referring Provider" [(ngModel)]="requestObj.IsRefProvider" [binary]="true" inputId="binary"></p-checkbox>
+                <label for="sf">Referring Provider</label>
+        
+                <p-checkbox  value="Individual" [(ngModel)]="requestObj.IsPerson" [binary]="true" inputId="binary"></p-checkbox>
+                <label for="la">Individual</label>
+        
+        
+                <p-checkbox  value="Active" [(ngModel)]="requestObj.Active" [binary]="true" inputId="binary"></p-checkbox>
+                <label for="la">Active</label>
+        </div>
+        
+          
+        
+        <br/>
+        
+        <div class="flex align-items-center gap-1">
+            <input pInputText   type="text" placeholder="Title"  [(ngModel)]="requestObj.Prefix"   />
+            <input pInputText type="text" placeholder="Full Name"   [(ngModel)]="requestObj.FullName"  />
+           
+            <input pInputText type="text" placeholder="Credentials"   [(ngModel)]="requestObj.Credential"  />
+            
+            
+        </div>
+    <br/>
+    
+        <div class="flex align-items-center gap-1">
+            <input pInputText   type="text" placeholder="ممتلىء"  [(ngModel)]="requestObj.ArFullName"  />
+        
+         
+            
+            
+        </div>
+    
+        <br/>
+    
+    
+    
+        <div class="flex align-items-center gap-1">
+    
+            
+    <div class="card flex justify-content-center">
+    <p-calendar [(ngModel)]="requestObj.DOB" aria-label="Date of Birth" placeholder="Date of Birth" [showIcon]="true"></p-calendar>
+    </div>
+    
+    
+    <span class="p-float-label">
+    <p-dropdown [options]="genders" [(ngModel)]="requestObj.Gender" placeholder="Select Gender" optionLabel="name" inputId="float-label"></p-dropdown>
+    <label for="float-label">Select Gender</label>
+    </span>
+    
+    
+    <span class="p-float-label">
+    <p-dropdown [options]="maritalstatuses" [(ngModel)]="requestObj.MaritalStatus" placeholder="Select Marital Status" optionLabel="name" inputId="float-label"></p-dropdown>
+    <label for="float-label">Select Marital Status</label>
+    </span>
+    
+    
+         
+            
+            
+        </div>
+    
+    
+    
+    
+    <br/>
+    
+    
+    <div class="flex align-items-center gap-1">
+    
+            
+    <input pInputText   type="text" placeholder="National ID"  [(ngModel)]="requestObj.Nic"  />
+    
+    
+    <input pInputText   type="text" placeholder="Driving License No" [(ngModel)]="requestObj.DriversLicenseNo" />
+    
+    
+    
+            
+    <div class="card flex justify-content-center">
+    <p-calendar [(ngModel)]="requestObj.JoiningDate" aria-label="Date of Joining" placeholder="Date of Joining" [showIcon]="true"></p-calendar>
+    </div>
+    
+             
+                
+                
+            </div>
+    
+    
+            <br/>
+    <br/>
+            <div class="flex align-items-center gap-1">
+    
+            
+              
+                
+                <span class="p-float-empType">
+                    <p-dropdown [options]="employeetypes" [(ngModel)]="requestObj.EmployeeType" placeholder="Select Employee Type" optionLabel="name" inputId="float-empType"></p-dropdown>
+                </span>
+                
+                
+                <span class="p-float-bg">
+                    <p-dropdown [options]="bloodgroups" [(ngModel)]="requestObj.BloodGroup" placeholder="Select Blood Group" optionLabel="name" inputId="float-bg"></p-dropdown>
+                </span>
+                
+                
+                         
+                            
+                            
+                        </div>
+    
+    
+                        <br/>
+    
+                        <div class="flex align-items-center gap-1">
+    
+                            <input pInputText   type="text" placeholder="Passport No" [(ngModel)]="requestObj.PassPo"  />
+    
+                        </div>
+    
+    <br/>
+    
+                        <div class="flex align-items-center gap-1">
+    
+                            <p-checkbox  value="Grant VIP Patient Access" [(ngModel)]="requestObj.VIPPatientAccess" [binary]="true" inputId="binary"></p-checkbox>
+                            <label for="ny">Grant VIP Patient Access</label>
+                    
+                        </div>
+    
+        </p-tabPanel>
+        <p-tabPanel header="Personal Information">
+    
+    
+    
+    
+    
+    
+    
+    <p-fieldset>
+    <ng-template pTemplate="header">
+        <div class="flex align-items-center text-primary">
+            <span class="pi pi-user"></span>
+            <span class="font-bold text-lg">Login</span>
+        </div>
+    </ng-template>
+    <div *ngFor="let facility of facilities" class="field-checkbox">
+        <p-checkbox name="group" [value]="facility" [(ngModel)]="requestObj.selectedFacility" [inputId]="facility.code"></p-checkbox>
+        <label [for]="facility.code">{{ facility.name }}</label>
+    </div>
+    
+    <br/>
+    
+    <div class="flex align-items-center gap-1">
+    
+    
+        <span class="p-float-label">
+            <p-dropdown [options]="roles" [(ngModel)]="requestObj.selectedRole" placeholder="Select Role" optionLabel="name" inputId="float-label"></p-dropdown>
+            <label for="float-label">Select Role</label>
+        </span>
+    
+        
+    
+        <input pInputText type="text" placeholder="UserName"   [(ngModel)]="requestObj.UserName" />
+        <input pInputText type="text" placeholder="Initials"   [(ngModel)]="requestObj.Initials" />
+        
+        
+        
+    </div>
+    
+    <br/>
+    
+    <div class="flex align-items-center gap-1">
+    
+    
+        <p-password [(ngModel)]="requestObj.Password" >
+            <ng-template pTemplate="header">
+                <h6>Password</h6>
+            </ng-template>
+            <ng-template pTemplate="footer">
+                <p-divider></p-divider>
+                <p class="mt-2">Suggestions</p>
+                <ul class="pl-2 ml-2 mt-0" style="line-height: 1.5">
+                    <li>At least one lowercase</li>
+                    <li>At least one uppercase</li>
+                    <li>At least one numeric</li>
+                    <li>Minimum 8 characters</li>
+                </ul>
+            </ng-template>
+        </p-password>
+    
+        <input pInputText type="text" placeholder="Confirm Password"  />
+    </div>
+    
+    
+    
+    </p-fieldset>
+    
+    
+    
+    
+    
+    
+    
+    <p-fieldset>
+    <ng-template pTemplate="header">
+        <div class="flex align-items-center text-primary">
+            <span class="pi pi-home"></span>
+            <span class="font-bold text-lg">Home Address</span>
+        </div>
+    </ng-template>
+    
+    <div class="flex align-items-center gap-1">
+        <input pInputText type="text" placeholder="Street"  [(ngModel)]="requestObj.HomeAddress1"   />
+        <input pInputText type="text" placeholder="Dwelling Number"  />
+        
+    
+    </div>
+    
+    <br/>
+    
+    <div class="flex align-items-center gap-1">
+        <span class="p-float-label">
+            <p-dropdown [options]="countries" [(ngModel)]="requestObj.CountryID" placeholder="Select Country" optionLabel="name" inputId="float-label"></p-dropdown>
+            <label for="float-label">Select Country</label>
+        </span>      
+    
+    
+        <span class="p-float-label">
+            <p-dropdown [options]="states" [(ngModel)]="requestObj.StateID" placeholder="Select State" optionLabel="name" inputId="float-label"></p-dropdown>
+            <label for="float-label">Select State/Emirate</label>
+        </span>
+    
+    
+        <span class="p-float-label">
+            <p-dropdown [options]="cities" [(ngModel)]="requestObj.CityID" placeholder="Select City" optionLabel="name" inputId="float-label"></p-dropdown>
+            <label for="float-label">Select City</label>
+        </span>
+        
+    
+    
+        <input pInputText type="text" placeholder="Zip/Postal Code"  [(ngModel)]="requestObj.ZipCode"  />
+    
+    
+    </div>
+    
+    
+    <br/>
+    
+    
+    <div class="flex align-items-center gap-1">
+        <input pInputText type="text" placeholder="Phone"   [(ngModel)]="requestObj.Phone"  />
+    
+        <input pInputText type="text" placeholder="Cell Phone"   [(ngModel)]="requestObj.CellNo" />
+    
+        <input pInputText type="text" placeholder="Pager"  [(ngModel)]="requestObj.HomePager"  />
+    
+        <input pInputText type="text" placeholder="Fax"   [(ngModel)]="requestObj.Fax"  />
+    
+    
+    
+    </div>
+    
+    <br/>
+    
+    
+    <div class="flex align-items-center gap-1">
+    <input pInputText type="text" placeholder="Email"  [(ngModel)]="requestObj.Email"   />
+    
+    
+    
+    
+    </div>
+    </p-fieldset>
+    
+    
+    
+    
+    
+    
+    
+    <p-fieldset>
+    <ng-template pTemplate="header">
+        <div class="flex align-items-center text-primary">
+            <span class="pi pi-bell"></span>
+            <span class="font-bold text-lg">Emergency</span>
+        </div>
+    </ng-template>
+    <div class="flex align-items-center gap-1">
+    
+        <span class="p-float-label">
+            <p-dropdown [options]="relationships" [(ngModel)]="requestObj.selectedRelationship" placeholder="Select RelationShip" optionLabel="name" inputId="float-label"></p-dropdown>
+            <label for="float-label">Select RelationShip</label>
+        </span>    
+       
+    
+        <input pInputText type="text" placeholder="Full Name"  [(ngModel)]="requestObj.EmerFullName" />
+    
+    
+    
+    </div>
+    
+    <br/>
+    <div class="flex align-items-center gap-1">
+        <input pInputText type="text" placeholder="Street"  [(ngModel)]="requestObj.EmerAddress1" />
+        <input pInputText type="text" placeholder="Dwelling Number"  />
+        
+    
+    </div>
+    
+    <br/>
+    
+    <div class="flex align-items-center gap-1">
+        <span class="p-float-label">
+            <p-dropdown [options]="countries" [(ngModel)]="requestObj.EmerCountryId" placeholder="Select Country" optionLabel="name" inputId="float-label"></p-dropdown>
+            <label for="float-label">Select Country</label>
+        </span>      
+    
+    
+        <span class="p-float-label">
+            <p-dropdown [options]="states" [(ngModel)]="requestObj.EmerStateId" placeholder="Select State" optionLabel="name" inputId="float-label"></p-dropdown>
+            <label for="float-label">Select State/Emirate</label>
+        </span>
+    
+    
+        <span class="p-float-label">
+            <p-dropdown [options]="cities" [(ngModel)]="requestObj.EmerCityId" placeholder="Select City" optionLabel="name" inputId="float-label"></p-dropdown>
+            <label for="float-label">Select City</label>
+        </span>
+        
+    
+    
+        <input pInputText type="text" placeholder="Zip/Postal Code" [(ngModel)]="requestObj.EmerZipCode"   />
+    
+    
+    </div>
+    
+    
+    
+    <br/>
+    
+    
+    <div class="flex align-items-center gap-1">
+        <input pInputText type="text" placeholder="Phone"  [(ngModel)]="requestObj.EmerPhone" />
+    
+        <input pInputText type="text" placeholder="Cell Phone"  [(ngModel)]="requestObj.EmerCellPhone"/>
+    
+        <input pInputText type="text" placeholder="Pager" [(ngModel)]="requestObj.EmerPager" />
+    
+        <input pInputText type="text" placeholder="Fax"  [(ngModel)]="requestObj.EmerFax" />
+    
+    
+    
+    </div>
+    
+    <br/>
+    
+    
+    <div class="flex align-items-center gap-1">
+    <input pInputText type="text" placeholder="Email"  [(ngModel)]="requestObj.EmerEmail" />
+    
+    
+    
+    
+    </div>
+    </p-fieldset>
+    
+    
+    
+    
+    
+    <p-fieldset>
+    <ng-template pTemplate="header">
+        <div class="flex align-items-center text-primary">
+            <span class="pi pi-briefcase"></span>
+            <span class="font-bold text-lg">Business</span>
+        </div>
+    </ng-template>
+    <div class="flex align-items-center gap-1">
+        <input pInputText type="text" placeholder="Street" [(ngModel)]="requestObj.BusAddress1"  />
+        <input pInputText type="text" placeholder="Dwelling Number"  />
+        
+    
+    </div>
+    
+    <br/>
+    
+    <div class="flex align-items-center gap-1">
+        <span class="p-float-label">
+            <p-dropdown [options]="countries" [(ngModel)]="requestObj.BusCountryId" placeholder="Select Country" optionLabel="name" inputId="float-label"></p-dropdown>
+            <label for="float-label">Select Country</label>
+        </span>      
+    
+    
+        <span class="p-float-label">
+            <p-dropdown [options]="states" [(ngModel)]="requestObj.BusStateId" placeholder="Select State" optionLabel="name" inputId="float-label"></p-dropdown>
+            <label for="float-label">Select State/Emirate</label>
+        </span>
+    
+    
+        <span class="p-float-label">
+            <p-dropdown [options]="cities" [(ngModel)]="requestObj.BusCityId" placeholder="Select City" optionLabel="name" inputId="float-label"></p-dropdown>
+            <label for="float-label">Select City</label>
+        </span>
+        
+        
+    
+    
+        <input pInputText type="text" placeholder="Zip/Postal Code" [(ngModel)]="requestObj.BusZipCode"  />
+    
+    
+    </div>
+    
+    
+    
+    <br/>
+    
+    
+    <div class="flex align-items-center gap-1">
+        <input pInputText type="text" placeholder="Phone"  [(ngModel)]="requestObj.BusPhone"/>
+    
+        <input pInputText type="text" placeholder="Cell Phone"  [(ngModel)]="requestObj.BusCellPhone" />
+    
+        <input pInputText type="text" placeholder="Pager" [(ngModel)]="requestObj.BusPager" />
+    
+        <input pInputText type="text" placeholder="Fax"  [(ngModel)]="requestObj.BusFax" />
+    
+    
+    
+    </div>
+    
+    <br/>
+    
+    <div class="flex align-items-center gap-1">
+        <input pInputText type="text" placeholder="Email"  [(ngModel)]="requestObj.BusEmail" />
+    
+        <input pInputText type="text" placeholder="Business Entity ID"  />
+    
+    
+    
+    
+    </div>
+    
+    </p-fieldset>
+    
+    
+    <p-fieldset>
+    
+        <ng-template pTemplate="header">
+            <div class="flex align-items-center text-primary">
+                <span class="pi pi-car"></span>
+                <span class="font-bold text-lg">License</span>
+            </div>
+        </ng-template>
+        
+        <div class="flex align-items-center gap-1">
+            <input pInputText type="text" [(ngModel)]="licenseName" placeholder="License Name"   />
+        
+        
+            
+        
+            <input pInputText type="number" [(ngModel)]="licenseNo" placeholder="License Number"   />
+        
+            <div class="card flex justify-content-center">
+                <p-calendar [(ngModel)]="licenseExpiry" aria-label="Expiry Date" placeholder="Expiry Date" [showIcon]="true"></p-calendar>
+                </div>
+        
+        
+        
+             
+        
+                
+        <p-checkbox [(ngModel)]="licenseStatus" [binary]="true" inputId="license"></p-checkbox>
+        <label for="ny">Status</label>
+        
+        
+        <br/>
+        
+        </div>
+        
+        <br/>
+        
+        
+     
+        
+    </p-fieldset>
+         
+        </p-tabPanel>
+       
+    </p-tabView>
+    
+    
+    
+    
+    
+    <ng-template pTemplate="footer">
+       
+    
+        <p-button label="Save" icon="pi pi-check" (click)="SaveEmployee()" styleClass="p-button-success"></p-button>
+  
+    
+    </ng-template>
+    
+    
+
+</p-panel>
+
+
+</div>
+
+
+
